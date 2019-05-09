@@ -138,11 +138,30 @@ bootstrap <- function(x, fun, B = 599, trim = TRUE, tr = 0.2, seed = TRUE, perce
   print(results)
 }
 
-bootstrap2 <- function(x, fun, B = 599, trim = TRUE, tr = 0.2, seed = TRUE, percentile = TRUE){
+bootstrap2 <- function(x, fun, B = 599, trimming = TRUE, tr = 0.2, seed = TRUE, percentile = TRUE) {
+  if(seed) {set.seed(1745)}
+  if (is.list(x)){
+    catcher <- matrix(ncol = length(x), nrow = B)
+    for (v in seq(1, length(x))) {
+    x_selected <- x[[v]]
+    place_holder <- c()
+      for (i in seq(1,B)){
+        if (trimming) {
+          boot_sample <- sample(x_selected, replace = TRUE)
+          boot_sample <- trim(boot_sample, tr)
+          est <- do.call(fun, list(boot_sample))
+          place_holder[i] <- est
+        } else {
+          boot_sample <- sample(x_selected, replace = TRUE)
+          est <- do.call(fun, list(boot_sample))
+          place_holder[i] <- est
+        }
+      } catcher[,v] <- place_holder
+    } catcher
+  } else {
   catcher <- numeric()
-  if(seed){set.seed(1745)}
-  for (i in seq(1,B)){
-    if (trim) {
+  for (i in seq(1,B)) {
+    if (trimming) {
       boot_sample <- sample(x, replace = TRUE)
       boot_sample <- trim(boot_sample, tr)
       est <- do.call(fun, list(boot_sample))
@@ -153,9 +172,9 @@ bootstrap2 <- function(x, fun, B = 599, trim = TRUE, tr = 0.2, seed = TRUE, perc
       est <- do.call(fun, list(boot_sample))
       catcher[i] <- est
       catcher
+      }
     }
   }
-  catcher
 }
 
 
