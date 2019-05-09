@@ -138,7 +138,7 @@ bootstrap <- function(x, fun, B = 599, trim = TRUE, tr = 0.2, seed = TRUE, perce
   print(results)
 }
 
-bootstrap2 <- function(x, fun, B = 599, trimming = TRUE, tr = 0.2, seed = TRUE, percentile = TRUE) {
+bootstrap2 <- function(x, fun, mode = "sample", B = 599, trimming = TRUE, tr = 0.2, seed = TRUE, percentile = TRUE) {
   if(seed) {set.seed(1745)}
   if (is.list(x)){
     catcher <- matrix(ncol = length(x), nrow = B)
@@ -201,4 +201,3 @@ wincor <- function(x, y, tr = .2) {
   w_cor <- cor(x_win, y_win)
   w_cor
 }
-
