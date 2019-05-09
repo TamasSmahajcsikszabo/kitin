@@ -155,9 +155,11 @@ bootstrap2 <- function(x, fun, B = 599, trimming = TRUE, tr = 0.2, seed = TRUE, 
           boot_sample <- sample(x_selected, replace = TRUE)
           est <- do.call(fun, list(boot_sample))
           place_holder[i] <- est
-        }
-      } catcher[,v] <- place_holder
-    } catcher
+          }
+      } 
+    catcher[,v] <- place_holder
+    }
+    catcher
   } else {
   catcher <- numeric()
   for (i in seq(1,B)) {
