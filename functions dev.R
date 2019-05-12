@@ -245,3 +245,29 @@ wincor <- function(x, y=NULL,  tr = .2, t_estimate = TRUE, bootstrap = FALSE, B 
     }
   }
 }
+
+tau_estimate <- function (x, y = NULL) {
+  if (is.list(x)) {
+    input <- x
+    x <- input[[1]]
+    y <- input[[2]]
+  }
+  
+  concordants <- c()
+  discordants <- c()
+  total <- c(0)
+  
+  for (index in seq(1, length(x))) {
+    for(pair_index in seq(1, length(x))[!seq(1, length(x)) == index]){
+      first <- list(x[index], y[index])
+      second <- list(x[pair_index], y[pair_index])
+      if (first[[1]] > second[[1]] & first[[2]] > second[[2]] |
+          first[[1]] < second[[1]] & first[[2]] < second[[2]]) {concordants <- c(concordants, 1)} else {
+            discordants <- c(discordants, -1)
+          }
+      total <- total + 1
+    }
+  }
+  tau <- (sum(concordants) + sum(discordants)) / total
+  tau
+}
