@@ -185,10 +185,11 @@ bootstrap2 <- function(x, fun, mode = "estimate", B = 599, trimming = TRUE, tr =
     } else {}
   }
 
-wincor <- function(x, y=NULL,  tr = .2, t_estimate = TRUE) {
+wincor <- function(x, y=NULL,  tr = .2, t_estimate = TRUE, bootstrap = TRUE, B = 599) {
   if (is.list(x)) {
-    x <- x[1]
-    y <- x[2]
+    input <- x
+    x <- input[[1]]
+    y <- input[[2]]
   }
   g <- floor(length(x) * tr)
   x_win <- c()
