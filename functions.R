@@ -180,29 +180,47 @@ bootstrap2 <- function(x, fun, mode = "estimate", B = 599, trimming = TRUE, tr =
     }
   } else if (mode == "sample") {
     x_selected <- x[[v]]
-    place_holder <- c()
+    place_holder <- c() 
     for (v in seq(1, length(x))) {}
     } else {}
   }
 
-wincor <- function(x, y, tr = .2) {
+wincor <- function(x, y=NULL,  tr = .2, t_estimate = TRUE) {
+  if (is.list(x)) {
+    x <- x[1]
+    y <- x[2]
+  }
   g <- floor(length(x) * tr)
   x_win <- c()
   y_win <- c()
-  x_g_L <- sort(x)[g + 1]
-  x_g_U <- sort(x, decreasing = TRUE)[g + 1]
+  x_h <- c()
+  y_h <- c()
+  x_g_L <- sort(x)[g+1]
+  x_g_U <- sort(x, decreasing = TRUE)[g+1]
   for (v in x) {
     if (v > x_g_U) {v = x_g_U
     } else if (v < x_g_L) {v = x_g_L
     } else {v = v} 
-    x_win <- c(x_win, v)} 
-  y_g_L <- sort(y)[g + 1]
-  y_g_U <- sort(y, decreasing = TRUE)[g + 1]
+    x_win <- c(x_win, v)}
+  y_g_L <- sort(y)[g+1]
+  y_g_U <- sort(y, decreasing = TRUE)[g+1]
   for (v in y) {
     if (v > y_g_U) {v = y_g_U
     } else if (v < y_g_L) {v = y_g_L
     } else {v = v} 
     y_win <- c(y_win, v)} 
   w_cor <- cor(x_win, y_win)
-  w_cor
+  n <- length(x)
+  h  <-  n - 2 * g
+  if (t_estimate){
+    n <- length(x)
+    T_w <- w_cor * sqrt((n - 2) / (1 - w_cor^2))
+    results <- list(w_cor, h, T_w, h - 2)
+    names(results) <- c("Winsorized correlation coefficient", "h estimate", "T estimate", "degrees of freedom")
+    results
+  } else {
+    results <- list(w_cor, h)
+    names(results) <- c("Winsorized correlation coefficient", "h estimateY")
+    results
+  }
 }
