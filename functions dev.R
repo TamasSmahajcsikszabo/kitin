@@ -185,7 +185,7 @@ bootstrap2 <- function(x, fun, mode = "estimate", B = 599, trimming = TRUE, tr =
     } else {}
   }
 
-wincor <- function(x, y=NULL,  tr = .2, t_estimate = TRUE, bootstrap = FALSE, B = 599, seed = TRUE) {
+wincor <- function(x, y=NULL,  tr = .2, t_estimate = TRUE, bootstrap = FALSE, B = 599, seed = FALSE) {
   if (seed) {set.seed(1745)}
   if (is.list(x)) {
     input <- x
@@ -270,4 +270,12 @@ tau_estimate <- function (x, y = NULL) {
   }
   tau <- (sum(concordants) + sum(discordants)) / total
   tau
+}
+
+gen_var <- function(x,y) {
+  var_x <- var(x, na.rm = TRUE)
+  var_y <- var(y, na.rm = TRUE)
+  covariance <- sqrt(var_x) * sqrt(var_y) * cor(x,y)
+  gen_var <- var_x * var_y * (1 - cor(x,y)^2)
+  sqrt(gen_var)
 }

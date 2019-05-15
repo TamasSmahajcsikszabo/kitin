@@ -185,12 +185,20 @@ bootstrap2 <- function(x, fun, mode = "estimate", B = 599, trimming = TRUE, tr =
     } else {}
   }
 
-wincor <- function(x, y=NULL,  tr = .2, t_estimate = TRUE, bootstrap = TRUE, B = 599) {
+wincor <- function(x, y=NULL,  tr = .2, t_estimate = TRUE, bootstrap = FALSE, B = 599) {
+  # handling list input
   if (is.list(x)) {
     input <- x
     x <- input[[1]]
     y <- input[[2]]
   }
+  
+  if (bootstrap){
+    for (index in seq(1,B)) {
+      
+    }
+    
+  } else { 
   g <- floor(length(x) * tr)
   x_win <- c()
   y_win <- c()
@@ -221,7 +229,8 @@ wincor <- function(x, y=NULL,  tr = .2, t_estimate = TRUE, bootstrap = TRUE, B =
     results
   } else {
     results <- list(w_cor, h)
-    names(results) <- c("Winsorized correlation coefficient", "h estimateY")
+    names(results) <- c("Winsorized correlation coefficient", "h estimate")
     results
+    }
   }
 }
