@@ -205,6 +205,9 @@ wincor <- function(x, y = NULL, tr = .2, t_estimate = TRUE, bootstrap = FALSE, B
   if (seed) {
     set.seed(1745)
   }
+
+wincor <- function(x, y=NULL,  tr = .2, t_estimate = TRUE, bootstrap = FALSE, B = 599, seed = FALSE) {
+  if (seed) {set.seed(1745)}
   if (is.list(x)) {
     input <- x
     x <- input[[1]]
@@ -317,4 +320,12 @@ smoother <- function(x, y, span = 0.5, fun = "mean") {
     len <- floor(length(y) * span)
     if (i == 1) {span_i <- i + len}
   }
+}
+
+gen_var <- function(x,y) {
+  var_x <- var(x, na.rm = TRUE)
+  var_y <- var(y, na.rm = TRUE)
+  covariance <- sqrt(var_x) * sqrt(var_y) * cor(x,y)
+  gen_var <- var_x * var_y * (1 - cor(x,y)^2)
+  sqrt(gen_var)
 }
