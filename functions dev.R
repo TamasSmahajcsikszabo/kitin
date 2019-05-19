@@ -313,11 +313,17 @@ gen_var <- function(x, y) {
   sqrt(gen_var)
 }
 
-smoother <- function(x, y, span = 0.5, fun = "mean") {
+smoother <- function(x, y, span = 0.1, fun = "mean") {
   smooth <- c()
-  for (i in seq(q, length(x))) {
+  for (i in seq(1, length(x))) {
     selected_x <- x[i]
-    len <- floor(length(y) * span)
-    if (i == 1) {span_i <- i + len}
+    len <- floor((length(y) * span))
+    lower <- seq(i - len, i)
+    upper <- seq(i, i + len)
+    selection_range <- seq(min(lower[lower > 0]), max(upper[upper <= length(x)]))
+    selected_y <- y[selection_range]
+    MOL <- do.call(fun, list(selected_y))
+    smooth[i] <- MOL
   }
+  smooth
 }
