@@ -321,11 +321,3 @@ smoother <- function(x, y, span = 0.5, fun = "mean") {
     if (i == 1) {span_i <- i + len}
   }
 }
-
-gen_var <- function(x,y) {
-  var_x <- var(x, na.rm = TRUE)
-  var_y <- var(y, na.rm = TRUE)
-  covariance <- sqrt(var_x) * sqrt(var_y) * cor(x,y)
-  gen_var <- var_x * var_y * (1 - cor(x,y)^2)
-  sqrt(gen_var)
-}
