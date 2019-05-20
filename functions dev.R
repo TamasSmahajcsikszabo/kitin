@@ -201,11 +201,6 @@ bootstrap2 <- function(x, fun, mode = "estimate", B = 599, trimming = TRUE, tr =
   } else {}
 }
 
-wincor <- function(x, y = NULL, tr = .2, t_estimate = TRUE, bootstrap = FALSE, B = 599, seed = FALSE) {
-  if (seed) {
-    set.seed(1745)
-  }
-
 wincor <- function(x, y=NULL,  tr = .2, t_estimate = TRUE, bootstrap = FALSE, B = 599, seed = FALSE) {
   if (seed) {set.seed(1745)}
   if (is.list(x)) {
@@ -327,3 +322,8 @@ smoother <- function(x, y, span = 0.1, fun = "mean") {
   }
   smooth
 }
+
+explanatory_power <- function(y_hat, y, fun = "var") {
+  EP <- do.call(fun, list(y_hat)) / do.call(fun, list(y))
+  EP
+  }
