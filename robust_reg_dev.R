@@ -8,6 +8,7 @@ y <- c(129, 107, 91, 110, 104, 101, 105, 125, 82, 92, 104, 134, 105, 95, 101, 10
 
 TS_est <- function(x, y, verbose = FALSE, detailed = FALSE, confidence = FALSE, B = 599) {
   # Theil-Sen regression estimator
+  if (!confidence) {
   slopes <- c()
   pairs <- data.frame(matrix(ncol = 6, nrow = length(x) * (length(y) - 1)))
   colnames(pairs) <- c("x1", "x2", "y1", "y2", "route", "inverse_route")
@@ -39,7 +40,7 @@ TS_est <- function(x, y, verbose = FALSE, detailed = FALSE, confidence = FALSE, 
   selected_pairs <- selected_pairs %>%
     mutate(index = row_number())
   message("Estimating slopes")
-  if (!confidence) {
+
     selected_pairs <- selected_pairs[, c(1:4)]
     X1 <- as.numeric(selected_pairs$x1)
     X2 <- as.numeric(selected_pairs$x2)
@@ -64,7 +65,7 @@ TS_est <- function(x, y, verbose = FALSE, detailed = FALSE, confidence = FALSE, 
       paste0("Slope ", M_slope, "\n"),
       if (detailed) {
         sort(slopes)
-      }
+      } else {"Results:"}
     )
     if (verbose) {
       message(results)
@@ -72,14 +73,13 @@ TS_est <- function(x, y, verbose = FALSE, detailed = FALSE, confidence = FALSE, 
     c(intercept, M_slope)
   } else {
     # the bootstrap branch
-
-    bootstrap_results <- data.frame(matrix(ncol = 2, nrow = B))
+    bootstrap_results <- matrix(ncol = 2, nrow = B)
     colnames(bootstrap_results) <- c("intercepts", "slopes")
     message("Bootstrapping started")
     message <- '.'
     for (b in seq(1, B)) {
       slopes <- c()
-      pairs <- data.frame(matrix(ncol = 6, nrow = length(x) * (length(y) - 1)))
+      pairs <- matrix(ncol = 6, nrow = length(x) * (length(y) - 1))
       colnames(pairs) <- c("x1", "x2", "y1", "y2", "route", "inverse_route")
       i <- seq(1, length(x))
       index <- 0
@@ -97,23 +97,21 @@ TS_est <- function(x, y, verbose = FALSE, detailed = FALSE, confidence = FALSE, 
           pairs[index, ] <- pair
         }
       }
-      pairs <- pairs %>% mutate(index = row_number())
-      selected_pairs <- data.frame(matrix(ncol = 6, nrow = (length(x) * (length(y) - 1)) / 2))
+      selected_pairs <- matrix(ncol = 6)
       colnames(selected_pairs) <- c("x1", "x2", "y1", "y2", "route", "inverse_route")
-      for (i in pairs$index) {
-        selected_pair <- pairs[pairs$index == i, ][, -7]
-        if (!selected_pair$route %in% selected_pairs$inverse_route) {
-          selected_pairs[i, ] <- selected_pair
+      for (i in seq(1, nrow(pairs))) {
+        selected_pair <- pairs[i, ]
+        if (!selected_pair[5] %in% selected_pairs[6]) {
+          selected_pairs <- rbind(selected_pairs, selected_pair)
         }
-        selected_pairs <- selected_pairs[!is.na(selected_pairs$route), ]
+        selected_pairs <- selected_pairs[!is.na(selected_pairs[5]), ]
       }
-      selected_pairs <- selected_pairs %>%
-        mutate(index = row_number())
-      selected_pairs <- selected_pairs[, c(1:4)]
-      X1 <- as.numeric(selected_pairs$x1)
-      X2 <- as.numeric(selected_pairs$x2)
-      Y1 <- as.numeric(selected_pairs$y1)
-      Y2 <- as.numeric(selected_pairs$y2)
+      
+      selected_pairs <- selected_pairs[!is.na(selected_pairs[,1]), c(1:4)]
+      X1 <- as.numeric(selected_pairs[,1])
+      X2 <- as.numeric(selected_pairs[,2])
+      Y1 <- as.numeric(selected_pairs[,3])
+      Y2 <- as.numeric(selected_pairs[,4])
 
       for (i in seq(1, nrow(selected_pairs))) {
         x1 <- X1[i]
@@ -129,19 +127,20 @@ TS_est <- function(x, y, verbose = FALSE, detailed = FALSE, confidence = FALSE, 
       intercept_boot <- M_y - M_x * M_slope_boot
       bootstrap_results[b, 1] <- intercept_boot
       bootstrap_results[b, 2] <- M_slope_boot
-      message <- c(message, '.')
+      if(length(message) %% 10 == 0) {message <- c(message, b)} else {message <- c(message, '.')}
+      cat("\f")
       message(message)
     }
-    sd_intercept <- sqrt(sd(bootstrap_results$intercepts, na.rm = TRUE))
-    mean_intercept <- mean(bootstrap_results$intercepts, na.rm = TRUE)
+    sd_intercept <- sqrt(sd(bootstrap_results[,1], na.rm = TRUE))
+    mean_intercept <- mean(bootstrap_results[,1], na.rm = TRUE)
     intercept_upper <- mean_intercept + 1.96 * sd_intercept
     intercept_lower <- mean_intercept - 1.96 * sd_intercept
 
-    sd_slope <- sqrt(sd(bootstrap_results$slopes, na.rm = TRUE))
-    mean_slope <- mean(bootstrap_results$slopes, na.rm = TRUE)
+    sd_slope <- sqrt(sd(bootstrap_results[,2], na.rm = TRUE))
+    mean_slope <- mean(bootstrap_results[,2], na.rm = TRUE)
     slope_upper <- mean_slope + 1.96 * sd_slope
     slope_lower <- mean_slope - 1.96 * sd_slope
-
+    
     results <- list(
       `intercept upper bound` = intercept_upper,
       `intercept lower bound` = intercept_lower,
@@ -150,10 +149,10 @@ TS_est <- function(x, y, verbose = FALSE, detailed = FALSE, confidence = FALSE, 
     )
     message(paste0("95% confidence interval estimates with ", b, " times Bootstrap", "\n"))
     results
-  }
+  } 
 }
 
-TS_est(x, y, verbose = TRUE, confidence = TRUE, B = 10)
+TS_est(x, y, verbose = TRUE, confidence = TRUE, B = 11)
 lm(y ~ x)
 library(ggplot2)
 ggplot() +
