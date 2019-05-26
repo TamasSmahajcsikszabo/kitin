@@ -329,3 +329,39 @@ explanatory_power <- function(y_hat, y, fun = "var") {
   EP <- do.call(fun, list(y_hat)) / do.call(fun, list(y))
   EP
 }
+
+slope_est <- function(x1, x2, y1, y2){
+  slope <- (y2 - y1) / (x2 - x1)
+  slope
+}
+
+TS_est <- function(x,y){
+  slopes <- c()
+  pairs <- list()
+  i <- seq(1, length(x))
+  
+  for (i_chosen in i){
+    for (i_chosen2 in i[-i_chosen]) {
+      x1 <- x[i_chosen]
+      x2 <- x[i_chosen2]
+      y1 <- y[i_chosen]
+      y2 <- y[i_chosen2]
+      slope_i <- slope_est(x1, x2, y1, y2)
+      slopes <- c(slopes, slope_i)
+    }
+  }
+  slopes <- unique(slopes)
+  slopes <- slopes[!slopes == "NaN" & !is.infinite(slopes)& !slopes == "-Inf"]
+  slopes <- sort(slopes)
+  M_slope <- median(slopes)
+  M_x <- median(x)
+  M_y <- median(y)
+  intercept <- M_y - M_x * M_slope
+  results <- list(
+    paste0('Theil-Sen Regression Estimator',"\n"),
+    paste0('Intercept ',intercept, "\n"),
+    paste0('Slope ',M_slope, "\n")
+  )
+  message(results)
+  c(intercept, M_slope)
+}
