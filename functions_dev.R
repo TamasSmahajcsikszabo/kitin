@@ -335,7 +335,7 @@ slope_est <- function(x1, x2, y1, y2) {
   slope
 }
 
-TS_est <- function(x, y, verbose = FALSE, detailed = FALSE) {
+TS_est <- function(x, y, verbose = FALSE, detailed = FALSE, confidence = FALSE, B = 599) {
   # Theil-Sen regression estimator
   slopes <- c()
   pairs <- data.frame(matrix(ncol = 6, nrow = length(x) * (length(y) - 1)))
@@ -368,30 +368,118 @@ TS_est <- function(x, y, verbose = FALSE, detailed = FALSE) {
   selected_pairs <- selected_pairs %>%
     mutate(index = row_number())
   message("Estimating slopes")
-  for (i in selected_pairs$index) {
-    x1 <- as.numeric(selected_pairs[selected_pairs$index == i, ]$x1)
-    x2 <- as.numeric(selected_pairs[selected_pairs$index == i, ]$x2)
-    y1 <- as.numeric(selected_pairs[selected_pairs$index == i, ]$y1)
-    y2 <- as.numeric(selected_pairs[selected_pairs$index == i, ]$y2)
-    slope <- slope_est(x1, x2, y1, y2)
-    slopes <- c(slopes, slope)
-  }
-  M_slope <- median(slopes, na.rm = TRUE)
-  M_x <- median(x, na.rm = TRUE)
-  M_y <- median(y, na.rm = TRUE)
-  intercept <- M_y - M_x * M_slope
-  results <- list(
-    paste0("Theil-Sen Regression Estimator", "\n"),
-    paste0("Intercept ", intercept, "\n"),
-    paste0("Slope ", M_slope, "\n"),
-    if (detailed) {
-      sort(slopes)
+  if (!confidence) {
+    selected_pairs <- selected_pairs[, c(1:4)]
+    X1 <- as.numeric(selected_pairs$x1)
+    X2 <- as.numeric(selected_pairs$x2)
+    Y1 <- as.numeric(selected_pairs$y1)
+    Y2 <- as.numeric(selected_pairs$y2)
+    
+    for (i in seq(1, nrow(selected_pairs))) {
+      x1 <- X1[i]
+      x2 <- X2[i]
+      y1 <- Y1[i]
+      y2 <- Y2[i]
+      slope <- slope_est(x1, x2, y1, y2)
+      slopes <- c(slopes, slope)
     }
-  )
-  if (verbose) {
-    message(results)
+    M_slope <- median(slopes, na.rm = TRUE)
+    M_x <- median(x, na.rm = TRUE)
+    M_y <- median(y, na.rm = TRUE)
+    intercept <- M_y - M_x * M_slope
+    results <- list(
+      paste0("Theil-Sen Regression Estimator", "\n"),
+      paste0("Intercept ", intercept, "\n"),
+      paste0("Slope ", M_slope, "\n"),
+      if (detailed) {
+        sort(slopes)
+      }
+    )
+    if (verbose) {
+      message(results)
+    }
+    c(intercept, M_slope)
+  } else {
+    # the bootstrap branch
+    
+    bootstrap_results <- data.frame(matrix(ncol = 2, nrow = B))
+    colnames(bootstrap_results) <- c("intercepts", "slopes")
+    message("Bootstrapping started")
+    message <- '.'
+    for (b in seq(1, B)) {
+      slopes <- c()
+      pairs <- data.frame(matrix(ncol = 6, nrow = length(x) * (length(y) - 1)))
+      colnames(pairs) <- c("x1", "x2", "y1", "y2", "route", "inverse_route")
+      i <- seq(1, length(x))
+      index <- 0
+      i_boot <- sample(seq(1, length(x)), replace = TRUE)
+      x_boot <- x[i_boot]
+      y_boot <- y[i_boot]
+      for (i_chosen in i) {
+        for (i_chosen2 in i[-i_chosen]) {
+          index <- index + 1
+          x1 <- x_boot[i_chosen]
+          x2 <- x_boot[i_chosen2]
+          y1 <- y_boot[i_chosen]
+          y2 <- y_boot[i_chosen2]
+          pair <- c(x1, x2, y1, y2, paste0(x1, ";", y1, "->", x2, ";", y2), paste0(x2, ";", y2, "->", x1, ";", y1))
+          pairs[index, ] <- pair
+        }
+      }
+      pairs <- pairs %>% mutate(index = row_number())
+      selected_pairs <- data.frame(matrix(ncol = 6, nrow = (length(x) * (length(y) - 1)) / 2))
+      colnames(selected_pairs) <- c("x1", "x2", "y1", "y2", "route", "inverse_route")
+      for (i in pairs$index) {
+        selected_pair <- pairs[pairs$index == i, ][, -7]
+        if (!selected_pair$route %in% selected_pairs$inverse_route) {
+          selected_pairs[i, ] <- selected_pair
+        }
+        selected_pairs <- selected_pairs[!is.na(selected_pairs$route), ]
+      }
+      selected_pairs <- selected_pairs %>%
+        mutate(index = row_number())
+      selected_pairs <- selected_pairs[, c(1:4)]
+      X1 <- as.numeric(selected_pairs$x1)
+      X2 <- as.numeric(selected_pairs$x2)
+      Y1 <- as.numeric(selected_pairs$y1)
+      Y2 <- as.numeric(selected_pairs$y2)
+      
+      for (i in seq(1, nrow(selected_pairs))) {
+        x1 <- X1[i]
+        x2 <- X2[i]
+        y1 <- Y1[i]
+        y2 <- Y2[i]
+        slope <- slope_est(x1, x2, y1, y2)
+        slopes <- c(slopes, slope)
+      }
+      M_slope_boot <- median(slopes, na.rm = TRUE)
+      M_x <- median(x_boot, na.rm = TRUE)
+      M_y <- median(y_boot, na.rm = TRUE)
+      intercept_boot <- M_y - M_x * M_slope_boot
+      bootstrap_results[b, 1] <- intercept_boot
+      bootstrap_results[b, 2] <- M_slope_boot
+      message <- c(message, '.')
+      message(message)
+    }
+    sd_intercept <- sqrt(sd(bootstrap_results$intercepts, na.rm = TRUE))
+    mean_intercept <- mean(bootstrap_results$intercepts, na.rm = TRUE)
+    intercept_upper <- mean_intercept + 1.96 * sd_intercept
+    intercept_lower <- mean_intercept - 1.96 * sd_intercept
+    
+    sd_slope <- sqrt(sd(bootstrap_results$slopes, na.rm = TRUE))
+    mean_slope <- mean(bootstrap_results$slopes, na.rm = TRUE)
+    slope_upper <- mean_slope + 1.96 * sd_slope
+    slope_lower <- mean_slope - 1.96 * sd_slope
+    
+    results <- list(
+      `intercept upper bound` = intercept_upper,
+      `intercept lower bound` = intercept_lower,
+      `slope upper bound` = slope_upper,
+      `slope lower bound` = slope_lower
+    )
+    message(paste0("95% confidence interval estimates with ", b, " times Bootstrap", "\n"))
+    results
   }
-  c(intercept, M_slope)
 }
 
 
