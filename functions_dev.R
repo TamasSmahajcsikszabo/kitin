@@ -335,35 +335,62 @@ slope_est <- function(x1, x2, y1, y2) {
   slope
 }
 
-TS_est <- function(x, y, verbose = FALSE) {
+TS_est <- function(x, y, verbose = FALSE, detailed = FALSE) {
   slopes <- c()
-  pairs <- list()
+  pairs <- data.frame(matrix(ncol = 6, nrow = length(x) * (length(y) - 1)))
+  colnames(pairs) <- c("x1", "x2", "y1", "y2", "route", "inverse_route")
   i <- seq(1, length(x))
-
+  index <- 0
   for (i_chosen in i) {
     for (i_chosen2 in i[-i_chosen]) {
+      index <- index + 1
       x1 <- x[i_chosen]
       x2 <- x[i_chosen2]
       y1 <- y[i_chosen]
       y2 <- y[i_chosen2]
-      slope_i <- slope_est(x1, x2, y1, y2)
-      slopes <- c(slopes, slope_i)
+      pair <- c(x1, x2, y1, y2, paste0(x1, ";", y1, "->", x2, ";", y2), paste0(x2, ";", y2, "->", x1, ";", y1))
+      pairs[index, ] <- pair
     }
   }
-  slopes <- unique(slopes)
-  slopes <- slopes[!slopes == "NaN" & !is.infinite(slopes) & !slopes == "-Inf"]
-  slopes <- sort(slopes)
-  M_slope <- median(slopes)
-  M_x <- median(x)
-  M_y <- median(y)
+  message("Routes mapped")
+  pairs <- pairs %>% mutate(index = row_number())
+  selected_pairs <- data.frame(matrix(ncol = 6, nrow = (length(x) * (length(y) - 1)) / 2))
+  colnames(selected_pairs) <- c("x1", "x2", "y1", "y2", "route", "inverse_route")
+  for (i in pairs$index) {
+    selected_pair <- pairs[pairs$index == i, ][, -7]
+    if (!selected_pair$route %in% selected_pairs$inverse_route) {
+      selected_pairs[i, ] <- selected_pair
+    }
+    selected_pairs <- selected_pairs[!is.na(selected_pairs$route), ]
+  }
+  message("Pairs estimated")
+  selected_pairs <- selected_pairs %>%
+    mutate(index = row_number())
+  message("Estimating slopes")
+  for (i in selected_pairs$index) {
+    x1 <- as.numeric(selected_pairs[selected_pairs$index == i, ]$x1)
+    x2 <- as.numeric(selected_pairs[selected_pairs$index == i, ]$x2)
+    y1 <- as.numeric(selected_pairs[selected_pairs$index == i, ]$y1)
+    y2 <- as.numeric(selected_pairs[selected_pairs$index == i, ]$y2)
+    slope <- slope_est(x1, x2, y1, y2)
+    slopes <- c(slopes, slope)
+  }
+  M_slope <- median(slopes, na.rm = TRUE)
+  M_x <- median(x, na.rm = TRUE)
+  M_y <- median(y, na.rm = TRUE)
   intercept <- M_y - M_x * M_slope
   results <- list(
     paste0("Theil-Sen Regression Estimator", "\n"),
     paste0("Intercept ", intercept, "\n"),
-    paste0("Slope ", M_slope, "\n")
+    paste0("Slope ", M_slope, "\n"),
+    if (detailed) {
+      sort(slopes)
+    }
   )
   if (verbose) {
     message(results)
   }
   c(intercept, M_slope)
 }
+
+
