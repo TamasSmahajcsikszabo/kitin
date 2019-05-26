@@ -374,7 +374,7 @@ TS_est <- function(x, y, verbose = FALSE, detailed = FALSE, confidence = FALSE, 
     X2 <- as.numeric(selected_pairs$x2)
     Y1 <- as.numeric(selected_pairs$y1)
     Y2 <- as.numeric(selected_pairs$y2)
-    
+
     for (i in seq(1, nrow(selected_pairs))) {
       x1 <- X1[i]
       x2 <- X2[i]
@@ -401,11 +401,11 @@ TS_est <- function(x, y, verbose = FALSE, detailed = FALSE, confidence = FALSE, 
     c(intercept, M_slope)
   } else {
     # the bootstrap branch
-    
+
     bootstrap_results <- data.frame(matrix(ncol = 2, nrow = B))
     colnames(bootstrap_results) <- c("intercepts", "slopes")
     message("Bootstrapping started")
-    message <- '.'
+    message <- "."
     for (b in seq(1, B)) {
       slopes <- c()
       pairs <- data.frame(matrix(ncol = 6, nrow = length(x) * (length(y) - 1)))
@@ -443,7 +443,7 @@ TS_est <- function(x, y, verbose = FALSE, detailed = FALSE, confidence = FALSE, 
       X2 <- as.numeric(selected_pairs$x2)
       Y1 <- as.numeric(selected_pairs$y1)
       Y2 <- as.numeric(selected_pairs$y2)
-      
+
       for (i in seq(1, nrow(selected_pairs))) {
         x1 <- X1[i]
         x2 <- X2[i]
@@ -458,19 +458,19 @@ TS_est <- function(x, y, verbose = FALSE, detailed = FALSE, confidence = FALSE, 
       intercept_boot <- M_y - M_x * M_slope_boot
       bootstrap_results[b, 1] <- intercept_boot
       bootstrap_results[b, 2] <- M_slope_boot
-      message <- c(message, '.')
+      message <- c(message, ".")
       message(message)
     }
     sd_intercept <- sqrt(sd(bootstrap_results$intercepts, na.rm = TRUE))
     mean_intercept <- mean(bootstrap_results$intercepts, na.rm = TRUE)
     intercept_upper <- mean_intercept + 1.96 * sd_intercept
     intercept_lower <- mean_intercept - 1.96 * sd_intercept
-    
+
     sd_slope <- sqrt(sd(bootstrap_results$slopes, na.rm = TRUE))
     mean_slope <- mean(bootstrap_results$slopes, na.rm = TRUE)
     slope_upper <- mean_slope + 1.96 * sd_slope
     slope_lower <- mean_slope - 1.96 * sd_slope
-    
+
     results <- list(
       `intercept upper bound` = intercept_upper,
       `intercept lower bound` = intercept_lower,
@@ -481,5 +481,3 @@ TS_est <- function(x, y, verbose = FALSE, detailed = FALSE, confidence = FALSE, 
     results
   }
 }
-
-
