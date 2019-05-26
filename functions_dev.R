@@ -330,17 +330,17 @@ explanatory_power <- function(y_hat, y, fun = "var") {
   EP
 }
 
-slope_est <- function(x1, x2, y1, y2){
+slope_est <- function(x1, x2, y1, y2) {
   slope <- (y2 - y1) / (x2 - x1)
   slope
 }
 
-TS_est <- function(x,y){
+TS_est <- function(x, y, verbose = FALSE) {
   slopes <- c()
   pairs <- list()
   i <- seq(1, length(x))
-  
-  for (i_chosen in i){
+
+  for (i_chosen in i) {
     for (i_chosen2 in i[-i_chosen]) {
       x1 <- x[i_chosen]
       x2 <- x[i_chosen2]
@@ -351,17 +351,19 @@ TS_est <- function(x,y){
     }
   }
   slopes <- unique(slopes)
-  slopes <- slopes[!slopes == "NaN" & !is.infinite(slopes)& !slopes == "-Inf"]
+  slopes <- slopes[!slopes == "NaN" & !is.infinite(slopes) & !slopes == "-Inf"]
   slopes <- sort(slopes)
   M_slope <- median(slopes)
   M_x <- median(x)
   M_y <- median(y)
   intercept <- M_y - M_x * M_slope
   results <- list(
-    paste0('Theil-Sen Regression Estimator',"\n"),
-    paste0('Intercept ',intercept, "\n"),
-    paste0('Slope ',M_slope, "\n")
+    paste0("Theil-Sen Regression Estimator", "\n"),
+    paste0("Intercept ", intercept, "\n"),
+    paste0("Slope ", M_slope, "\n")
   )
-  message(results)
+  if (verbose) {
+    message(results)
+  }
   c(intercept, M_slope)
 }
