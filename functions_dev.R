@@ -336,6 +336,7 @@ slope_est <- function(x1, x2, y1, y2) {
 }
 
 TS_est <- function(x, y, verbose = FALSE, detailed = FALSE) {
+  # Theil-Sen regression estimator
   slopes <- c()
   pairs <- data.frame(matrix(ncol = 6, nrow = length(x) * (length(y) - 1)))
   colnames(pairs) <- c("x1", "x2", "y1", "y2", "route", "inverse_route")
