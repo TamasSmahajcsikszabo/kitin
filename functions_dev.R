@@ -334,7 +334,6 @@ slope_est <- function(x1, x2, y1, y2) {
   slope <- (y2 - y1) / (x2 - x1)
   slope
 }
-
 TS_est <- function(x, y, verbose = FALSE, detailed = FALSE, confidence = FALSE, B = 599) {
   # Theil-Sen regression estimator
   if (!confidence) {
@@ -426,14 +425,13 @@ TS_est <- function(x, y, verbose = FALSE, detailed = FALSE, confidence = FALSE, 
           pairs[index, ] <- pair
         }
       }
-      selected_pairs <- W(ncol = 6)
+      selected_pairs <- matrix(ncol = 6)
       colnames(selected_pairs) <- c("x1", "x2", "y1", "y2", "route", "inverse_route")
       for (i in seq(1, nrow(pairs))) {
         selected_pair <- pairs[i, ]
         if (!selected_pair[5] %in% selected_pairs[6]) {
           selected_pairs <- rbind(selected_pairs, selected_pair)
         }
-        selected_pairs <- selected_pairs[!is.na(selected_pairs[5]), ]
       }
       
       selected_pairs <- selected_pairs[!is.na(selected_pairs[,1]), c(1:4)]
@@ -480,3 +478,4 @@ TS_est <- function(x, y, verbose = FALSE, detailed = FALSE, confidence = FALSE, 
     results
   } 
 }
+
