@@ -12,11 +12,11 @@ winsorize <- function(x, tr = 0.2) {
   winsorized_value_upper <- sort(x, decreasing = TRUE)[threshold_index + 1]
   x_wins <- sort(x)
   for (i in seq(1, threshold_index)) {
-    x_wins[i] <- winsorized_value_lower
+    if (x_wins[i] < winsorized_value_lower) {x_wins[i] <- winsorized_value_lower}
   }
+  x_wins <- sort(x_wins, decreasing = TRUE)
   for (i in seq(1, threshold_index)) {
-    x_wins <- sort(x_wins, decreasing = TRUE)
-    x_wins[i] <- winsorized_value_upper
+    if (x_wins[i] > winsorized_value_upper) {x_wins[i] <- winsorized_value_upper}
   }
   x_wins <- sort(x_wins)
   x_wins
