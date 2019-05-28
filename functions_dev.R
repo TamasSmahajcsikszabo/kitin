@@ -14,8 +14,8 @@ winsorize <- function(x, tr = 0.2) {
   for (i in seq(1, threshold_index)) {
     x_wins[i] <- winsorized_value_lower
   }
+  x_wins <- sort(x_wins, decreasing = TRUE)
   for (i in seq(1, threshold_index)) {
-    x_wins <- sort(x_wins, decreasing = TRUE)
     x_wins[i] <- winsorized_value_upper
   }
   x_wins <- sort(x_wins)
