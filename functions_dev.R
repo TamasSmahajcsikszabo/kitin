@@ -185,14 +185,13 @@ bootstrap2 <- function(x, fun, mode = "estimate", B = 599, trimming = TRUE, tr =
           boot_sample <- trim(boot_sample, tr)
           est <- do.call(fun, list(boot_sample))
           catcher[i] <- est
-          catcher
         } else {
           boot_sample <- sample(x, replace = TRUE)
           est <- do.call(fun, list(boot_sample))
           catcher[i] <- est
-          catcher
         }
       }
+      catcher
     }
   } else if (mode == "sample") {
     x_selected <- x[[v]]
