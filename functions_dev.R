@@ -1,4 +1,4 @@
-winsorize <- function(x, tr = 0.2) {
+winsorize <- function(x, tr = 0.2, verbose = FALSE) {
   if (!is.vector(x)) {
     x <- as_vector(x)
   } else {
@@ -13,7 +13,7 @@ winsorize <- function(x, tr = 0.2) {
   cat(paste0("\r", "Progress: ", (i / length(x)) * 100, "%"))
   }
   cat(paste0("\n","Winsorized dataset:", "\n"))
-  x
+  if(verbose){list(x, winsorized_value_lower, winsorized_value_upper)} else {x}
 }
 trimmed_mean <- function(x, tr = 0.2) {
   tr_index <- seq(1, floor(tr * length(x)))

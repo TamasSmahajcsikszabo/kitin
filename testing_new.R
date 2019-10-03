@@ -15,6 +15,10 @@ onestepm(x2)
 wincor(x1, x2)
 
 tau_estimate(x1, x2)
-x <- x1[1:100]
-y <- x2[1:100]
+x <- x1[1:300]
+y <- x2[1:300]
 tau_estimate(x,y)
+xf <- 1
+xf2 <- 2
+tau_estimate(xf,xf2)
+winsorize(x)
