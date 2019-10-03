@@ -20,6 +20,7 @@ winsorize <- function(x, tr = 0.2) {
   x_wins <- sort(x_wins)
   x_wins
 }
+
 trimmed_mean <- function(x, tr = 0.2) {
   tr_index <- seq(1, floor(tr * length(x)))
   x_sorted <- sort(x)
@@ -294,10 +295,14 @@ tau_estimate <- function(x, y = NULL) {
         discordants <- c(discordants, -1)
       }
       total <- total + 1
+      cat(paste0("\r","Progress: ", round(total / max_op, 2) * 100, "%"))
     }
   }
   tau <- (sum(concordants) + sum(discordants)) / total
-  if(is.nan(tau)){warning("Estimation not possible")} else {tau}
+  if(is.nan(tau) & (length(x) == 1 | length(y) == 1)){warning("Estimation not possible; input values are scalars")
+  } else {
+      cat(paste0("\n","Tau estimate = ", tau))
+    }
 }
 
 gen_var <- function(x, y) {
