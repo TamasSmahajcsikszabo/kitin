@@ -5,22 +5,16 @@ winsorize <- function(x, tr = 0.2) {
     x
   }
   threshold_index <- floor(length(x) * tr)
-  x <- sort(x)
-  winsorized_value_lower <- x[threshold_index + 1]
-  x <- sort(x, decreasing = TRUE)
+  winsorized_value_lower <- sort(x)[threshold_index + 1]
   winsorized_value_upper <- sort(x, decreasing = TRUE)[threshold_index + 1]
-  x_wins <- sort(x)
-  for (i in seq(1, threshold_index)) {
-    if (x_wins[i] < winsorized_value_lower) {x_wins[i] <- winsorized_value_lower}
+  for (i in seq(1, length(x))) {
+    if (x[i] > winsorized_value_upper) {x[i] <- winsorized_value_upper}
+    else if (x[i] < winsorized_value_lower) {x[i] <- winsorized_value_lower} else {x[i] <- x[i]}
+  cat(paste0("\r", "Progress: ", (i / length(x)) * 100, "%"))
   }
-  x_wins <- sort(x_wins, decreasing = TRUE)
-  for (i in seq(1, threshold_index)) {
-    if (x_wins[i] > winsorized_value_upper) {x_wins[i] <- winsorized_value_upper}
-  }
-  x_wins <- sort(x_wins)
-  x_wins
+  cat(paste0("\n","Winsorized dataset:", "\n"))
+  x
 }
-
 trimmed_mean <- function(x, tr = 0.2) {
   tr_index <- seq(1, floor(tr * length(x)))
   x_sorted <- sort(x)
