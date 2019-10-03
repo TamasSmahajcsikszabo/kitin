@@ -1,4 +1,3 @@
-
 winsorize <- function(x, tr = 0.2) {
   if (!is.vector(x)) {
     x <- as_vector(x)
@@ -283,7 +282,7 @@ tau_estimate <- function(x, y = NULL) {
   concordants <- c()
   discordants <- c()
   total <- c(0)
-
+  max_op <- length(x) * (length(y) - 1)
   for (index in seq(1, length(x))) {
     for (pair_index in seq(1, length(x))[!seq(1, length(x)) == index]) {
       first <- list(x[index], y[index])
@@ -298,7 +297,7 @@ tau_estimate <- function(x, y = NULL) {
     }
   }
   tau <- (sum(concordants) + sum(discordants)) / total
-  tau
+  if(is.nan(tau)){warning("Estimation not possible")} else {tau}
 }
 
 gen_var <- function(x, y) {

@@ -154,7 +154,7 @@ TS_est <- function(x, y, verbose = FALSE, detailed = FALSE, confidence = FALSE, 
   } 
 }
 
-TS_est(x, y, verbose = TRUE, confidence = TRUE)
+TS <- TS_est(x, y, verbose = FALSE, B = 10, confidence = FALSE)
 lm(y ~ x)
 
 ggplot() +
