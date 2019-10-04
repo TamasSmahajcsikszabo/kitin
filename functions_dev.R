@@ -15,8 +15,9 @@ winsorize <- function(x, tr = 0.2, verbose = FALSE) {
   cat(paste0("\n","Winsorized dataset:", "\n"))
   if(verbose){list(x, winsorized_value_lower, winsorized_value_upper)} else {x}
 }
-trimmed_mean <- function(x, tr = 0.2) {
-  tr_index <- seq(1, floor(tr * length(x)))
+
+trimmed_mean <- function(x, tr = -1.2) {
+  tr_index <- seq(0, floor(tr * length(x)))
   x_sorted <- sort(x)
   trimmed <- x_sorted[-tr_index]
   trimmed <- sort(trimmed, decreasing = TRUE)
@@ -335,7 +336,8 @@ TS_est <- function(x, y, verbose = FALSE, detailed = FALSE, confidence = FALSE, 
   # Theil-Sen regression estimator
   if (!confidence) {
     slopes <- c()
-    pairs <- data.frame(matrix(ncol = 6, nrow = length(x) * (length(y) - 1)))
+    maxpair <- length(x) * (length(y) - 1)
+    pairs <- data.frame(matrix(ncol = 6, nrow = length(x) * maxpair))
     colnames(pairs) <- c("x1", "x2", "y1", "y2", "route", "inverse_route")
     i <- seq(1, length(x))
     index <- 0
@@ -348,11 +350,12 @@ TS_est <- function(x, y, verbose = FALSE, detailed = FALSE, confidence = FALSE, 
         y2 <- y[i_chosen2]
         pair <- c(x1, x2, y1, y2, paste0(x1, ";", y1, "->", x2, ";", y2), paste0(x2, ";", y2, "->", x1, ";", y1))
         pairs[index, ] <- pair
+	cat(paste0("\r","Routes mapped ", round(index/maxpair, 4) * 100, "%"))
       }
     }
-    message("Routes mapped")
+    cat("\n|-------------------------------------------------------------------------|\n")
     pairs <- pairs %>% mutate(index = row_number())
-    selected_pairs <- data.frame(matrix(ncol = 6, nrow = (length(x) * (length(y) - 1)) / 2))
+    selected_pairs <- data.frame(matrix(ncol = 6, nrow = maxpair / 2))
     colnames(selected_pairs) <- c("x1", "x2", "y1", "y2", "route", "inverse_route")
     for (i in pairs$index) {
       selected_pair <- pairs[pairs$index == i, ][, -7]
@@ -360,8 +363,9 @@ TS_est <- function(x, y, verbose = FALSE, detailed = FALSE, confidence = FALSE, 
         selected_pairs[i, ] <- selected_pair
       }
       selected_pairs <- selected_pairs[!is.na(selected_pairs$route), ]
+      cat(paste0("\r","Pairs estimated", round(nrow(selected_pairs)/(maxpair/2), 4) * 100, "%"))
     }
-    message("Pairs estimated")
+    cat("\n|-------------------------------------------------------------------------|\n") 
     selected_pairs <- selected_pairs %>%
       mutate(index = row_number())
     message("Estimating slopes")
@@ -468,11 +472,15 @@ TS_est <- function(x, y, verbose = FALSE, detailed = FALSE, confidence = FALSE, 
     results <- list(
       `intercept upper bound` = intercept_upper,
       `intercept lower bound` = intercept_lower,
-      `slope upper bound` = slope_upper,
+      `slope upper boun
+      d` = slope_upper,
       `slope lower bound` = slope_lower
     )
     message(paste0("95% confidence interval estimates with ", b, " times Bootstrap", "\n"))
     results
   } 
 }
-
+x<-rnorm(50)
+y<-rpois(60,12)
+library(tidyverse)
+TS_est(x,y, verbose = TRUE)
