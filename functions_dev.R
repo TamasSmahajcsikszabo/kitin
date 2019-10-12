@@ -1,3 +1,4 @@
+# winsorize function for general purposes
 winsorize <- function(x, tr = 0.2, verbose = FALSE) {
   if (!is.vector(x)) {
     x <- as_vector(x)
