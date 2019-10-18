@@ -1,5 +1,6 @@
 # winsorize function for general purposes
 winsorize <- function(x, tr = 0.2, verbose = FALSE) {
+  start_time <- Sys.time()
   if (!is.vector(x)) {
     x <- as_vector(x)
   } else {
@@ -11,10 +12,14 @@ winsorize <- function(x, tr = 0.2, verbose = FALSE) {
   for (i in seq(1, length(x))) {
     if (x[i] > winsorized_value_upper) {x[i] <- winsorized_value_upper}
     else if (x[i] < winsorized_value_lower) {x[i] <- winsorized_value_lower} else {x[i] <- x[i]}
-  cat(paste0("\r", "Progress: ", (i / length(x)) * 100, "%"))
+  cat(paste0("\r", "Progress: ", round((i / length(x)) * 100,0), "%"))
   }
   cat(paste0("\n","Winsorized dataset:", "\n"))
-  if(verbose){list(x, winsorized_value_lower, winsorized_value_upper)} else {x}
+  if(verbose){list(x, 
+		   winsorized_value_lower, 
+		   winsorized_value_upper,
+		   
+		   print(paste0("Finished estimation in ",abs(round(difftime(start_time, Sys.time())[[1]], 2))," sec")))} else {x}
 }
 
 trimmed_mean <- function(x, tr = -1.2) {
@@ -483,5 +488,5 @@ TS_est <- function(x, y, verbose = FALSE, detailed = FALSE, confidence = FALSE, 
 }
 x<-rnorm(50)
 y<-rpois(60,12)
-library(tidyverse)
-TS_est(x,y, verbose = TRUE)
+# library(tidyverse)
+# TS_est(x,y, verbose = TRUE)
