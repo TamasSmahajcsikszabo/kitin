@@ -10,16 +10,28 @@ winsorize <- function(x, tr = 0.2, verbose = FALSE) {
   winsorized_value_lower <- sort(x)[threshold_index + 1]
   winsorized_value_upper <- sort(x, decreasing = TRUE)[threshold_index + 1]
   for (i in seq(1, length(x))) {
-    if (x[i] > winsorized_value_upper) {x[i] <- winsorized_value_upper}
-    else if (x[i] < winsorized_value_lower) {x[i] <- winsorized_value_lower} else {x[i] <- x[i]}
-  cat(paste0("\r", "Progress: ", round((i / length(x)) * 100,0), "%"))
+    if (x[i] > winsorized_value_upper) {
+      x[i] <- winsorized_value_upper
+    }
+    else if (x[i] < winsorized_value_lower) {
+      x[i] <- winsorized_value_lower
+    } else {
+      x[i] <- x[i]
+    }
+    cat(paste0("\r", "Progress: ", round((i / length(x)) * 100, 0), "%"))
   }
-  cat(paste0("\n","Winsorized dataset:", "\n"))
-  if(verbose){list(x, 
-		   winsorized_value_lower, 
-		   winsorized_value_upper,
-		   
-		   print(paste0("Finished estimation in ",abs(round(difftime(start_time, Sys.time())[[1]], 2))," sec")))} else {x}
+  cat(paste0("\n", "Winsorized dataset:", "\n"))
+  if (verbose) {
+    list(
+      x,
+      winsorized_value_lower,
+      winsorized_value_upper,
+
+      print(paste0("Finished estimation in ", abs(round(difftime(start_time, Sys.time())[[1]], 2)), " sec"))
+    )
+  } else {
+    x
+  }
 }
 
 trimmed_mean <- function(x, tr = -1.2) {
@@ -40,6 +52,7 @@ bootstrap_t_trim <- function(x, B = 599) {
     winsorized_SD <- sd(winsorize(bootstrap_sample), na.rm = TRUE)
     trimmed_mean <- trimmed_mean(bootstrap_sample, tr = 0.2)
     t_b <- (trimmed_mean - trimmed_mean_total) / (winsorized_SD / (0.6 * sqrt(length(bootstrap_sample))))
+
     bootstrap_t[i] <- t_b
   }
   bootstrap_t
@@ -152,7 +165,6 @@ bootstrap <- function(x, fun, B = 599, trim = TRUE, tr = 0.2, seed = TRUE, perce
   message("Bootstrap estimate ready")
   print(results)
 }
-
 bootstrap2 <- function(x, fun, mode = "estimate", B = 599, trimming = TRUE, tr = 0.2, seed = TRUE, percentile = TRUE) {
   if (seed) {
     set.seed(1745)
@@ -296,14 +308,15 @@ tau_estimate <- function(x, y = NULL) {
         discordants <- c(discordants, -1)
       }
       total <- total + 1
-      cat(paste0("\r","Progress: ", round(total / max_op, 2) * 100, "%"))
+      cat(paste0("\r", "Progress: ", round(total / max_op, 2) * 100, "%"))
     }
   }
   tau <- (sum(concordants) + sum(discordants)) / total
-  if(is.nan(tau) & (length(x) == 1 | length(y) == 1)){warning("Estimation not possible; input values are scalars")
+  if (is.nan(tau) & (length(x) == 1 | length(y) == 1)) {
+    warning("Estimation not possible; input values are scalars")
   } else {
-      cat(paste0("\n","Tau estimate = ", tau))
-    }
+    cat(paste0("\n", "Tau estimate = ", tau))
+  }
 }
 
 gen_var <- function(x, y) {
@@ -356,7 +369,7 @@ TS_est <- function(x, y, verbose = FALSE, detailed = FALSE, confidence = FALSE, 
         y2 <- y[i_chosen2]
         pair <- c(x1, x2, y1, y2, paste0(x1, ";", y1, "->", x2, ";", y2), paste0(x2, ";", y2, "->", x1, ";", y1))
         pairs[index, ] <- pair
-	cat(paste0("\r","Routes mapped ", round(index/maxpair, 4) * 100, "%"))
+        cat(paste0("\r", "Routes mapped ", round(index / maxpair, 4) * 100, "%"))
       }
     }
     cat("\n|-------------------------------------------------------------------------|\n")
@@ -369,19 +382,19 @@ TS_est <- function(x, y, verbose = FALSE, detailed = FALSE, confidence = FALSE, 
         selected_pairs[i, ] <- selected_pair
       }
       selected_pairs <- selected_pairs[!is.na(selected_pairs$route), ]
-      cat(paste0("\r","Pairs estimated", round(nrow(selected_pairs)/(maxpair/2), 4) * 100, "%"))
+      cat(paste0("\r", "Pairs estimated", round(nrow(selected_pairs) / (maxpair / 2), 4) * 100, "%"))
     }
-    cat("\n|-------------------------------------------------------------------------|\n") 
+    cat("\n|-------------------------------------------------------------------------|\n")
     selected_pairs <- selected_pairs %>%
       mutate(index = row_number())
     message("Estimating slopes")
-    
+
     selected_pairs <- selected_pairs[, c(1:4)]
     X1 <- as.numeric(selected_pairs$x1)
     X2 <- as.numeric(selected_pairs$x2)
     Y1 <- as.numeric(selected_pairs$y1)
     Y2 <- as.numeric(selected_pairs$y2)
-    
+
     for (i in seq(1, nrow(selected_pairs))) {
       x1 <- X1[i]
       x2 <- X2[i]
@@ -400,7 +413,9 @@ TS_est <- function(x, y, verbose = FALSE, detailed = FALSE, confidence = FALSE, 
       paste0("Slope ", M_slope, "\n"),
       if (detailed) {
         sort(slopes)
-      } else {"Results:"}
+      } else {
+        "Results:"
+      }
     )
     if (verbose) {
       message(results)
@@ -411,7 +426,7 @@ TS_est <- function(x, y, verbose = FALSE, detailed = FALSE, confidence = FALSE, 
     bootstrap_results <- matrix(ncol = 2, nrow = B)
     colnames(bootstrap_results) <- c("intercepts", "slopes")
     message("Bootstrapping started")
-    message <- '.'
+    message <- "."
     for (b in seq(1, B)) {
       slopes <- c()
       pairs <- matrix(ncol = 6, nrow = length(x) * (length(y) - 1))
@@ -440,13 +455,13 @@ TS_est <- function(x, y, verbose = FALSE, detailed = FALSE, confidence = FALSE, 
           selected_pairs <- rbind(selected_pairs, selected_pair)
         }
       }
-      
-      selected_pairs <- selected_pairs[!is.na(selected_pairs[,1]), c(1:4)]
-      X1 <- as.numeric(selected_pairs[,1])
-      X2 <- as.numeric(selected_pairs[,2])
-      Y1 <- as.numeric(selected_pairs[,3])
-      Y2 <- as.numeric(selected_pairs[,4])
-      
+
+      selected_pairs <- selected_pairs[!is.na(selected_pairs[, 1]), c(1:4)]
+      X1 <- as.numeric(selected_pairs[, 1])
+      X2 <- as.numeric(selected_pairs[, 2])
+      Y1 <- as.numeric(selected_pairs[, 3])
+      Y2 <- as.numeric(selected_pairs[, 4])
+
       for (i in seq(1, nrow(selected_pairs))) {
         x1 <- X1[i]
         x2 <- X2[i]
@@ -461,20 +476,24 @@ TS_est <- function(x, y, verbose = FALSE, detailed = FALSE, confidence = FALSE, 
       intercept_boot <- M_y - M_x * M_slope_boot
       bootstrap_results[b, 1] <- intercept_boot
       bootstrap_results[b, 2] <- M_slope_boot
-      if(length(message) %% 10 == 0) {message <- c(message, b)} else {message <- c(message, '.')}
+      if (length(message) %% 10 == 0) {
+        message <- c(message, b)
+      } else {
+        message <- c(message, ".")
+      }
       cat("\f")
       message(message)
     }
-    sd_intercept <- sqrt(sd(bootstrap_results[,1], na.rm = TRUE))
-    mean_intercept <- mean(bootstrap_results[,1], na.rm = TRUE)
+    sd_intercept <- sqrt(sd(bootstrap_results[, 1], na.rm = TRUE))
+    mean_intercept <- mean(bootstrap_results[, 1], na.rm = TRUE)
     intercept_upper <- mean_intercept + 1.96 * sd_intercept
     intercept_lower <- mean_intercept - 1.96 * sd_intercept
-    
-    sd_slope <- sqrt(sd(bootstrap_results[,2], na.rm = TRUE))
-    mean_slope <- mean(bootstrap_results[,2], na.rm = TRUE)
+
+    sd_slope <- sqrt(sd(bootstrap_results[, 2], na.rm = TRUE))
+    mean_slope <- mean(bootstrap_results[, 2], na.rm = TRUE)
     slope_upper <- mean_slope + 1.96 * sd_slope
     slope_lower <- mean_slope - 1.96 * sd_slope
-    
+
     results <- list(
       `intercept upper bound` = intercept_upper,
       `intercept lower bound` = intercept_lower,
@@ -484,9 +503,9 @@ TS_est <- function(x, y, verbose = FALSE, detailed = FALSE, confidence = FALSE, 
     )
     message(paste0("95% confidence interval estimates with ", b, " times Bootstrap", "\n"))
     results
-  } 
+  }
 }
-x<-rnorm(50)
-y<-rpois(60,12)
+x <- rnorm(50)
+y <- rpois(60, 12)
 # library(tidyverse)
 # TS_est(x,y, verbose = TRUE)
