@@ -1,5 +1,6 @@
 library(tidyverse)
 library(jsonlite)
+library(jsonify)
 
 data <- tribble(
   ~x, ~y,
@@ -7,8 +8,10 @@ data <- tribble(
   0.2987, 57.037,
   0.4648, 56.979,
   0.5762, 57.074,
-  0.8386, 57.422
-)
+  0.8386, 57.42f
+) 
+data <- as.data.frame(data)
+jsonlite::write_json(data, "~/repos/kitin/data/moscovich.json")
 
 ### 1. calculating X distances from the mean of X
 
