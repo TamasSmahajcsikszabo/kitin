@@ -72,7 +72,7 @@ MAD_plot <- function(x) {
     geom_hline(aes(yintercept = boundaries[3, ][[1]]), linetype = "dotted", size = .5, alpha = 1 / 2) +
     geom_hline(aes(yintercept = boundaries[4, ][[1]]), linetype = "dotted", size = .5, alpha = 1 / 2) +
     geom_point(aes(index, outlier), size = 6, color = "coral") +
-    geom_point(aes(index, x), size = 3, color = "cornflowerblue") +
+    geom_point(aes(index, x), size = 4, color = "cornflowerblue") +
     theme_light() +
     labs(
       x = "Index of observation",
