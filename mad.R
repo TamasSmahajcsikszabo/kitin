@@ -55,20 +55,30 @@ MAD_plot <- function(x) {
   ))
   rownames(boundaries) <- c("-1s", "+1s", "-2s", "+2s")
 
+  labels <- data.frame(
+    x = c(10, 10, 10),
+    y = c(boundaries[3, ][[1]], median(x, na.rm = TRUE), boundaries[4, ][[1]]),
+    label = c(
+      paste0("median - 2s: ", round(boundaries[3, ][[1]], 3)),
+      paste0("median: ", median(x, na.rm = TRUE)),
+      paste0("median + 2s: ", round(boundaries[4, ][[1]], 3))
+    )
+  )
+
   ggplot(plot_data) +
-    geom_hline(aes(yintercept = median(x, na.rm = TRUE)), linetype = "longdash", size = .5, alpha = 1/2) +
-    geom_hline(aes(yintercept = boundaries[1, ][[1]]), linetype = "twodash", size = .5, alpha = 1/2) +
-    geom_hline(aes(yintercept = boundaries[2, ][[1]]), linetype = "twodash", size = .5, alpha = 1/2) +
-    geom_hline(aes(yintercept = boundaries[3, ][[1]]), linetype = "dotted", size = .5, alpha = 1/2) +
-    geom_hline(aes(yintercept = boundaries[4, ][[1]]), linetype = "dotted", size = .5, alpha = 1/2) +
+    geom_hline(aes(yintercept = median(x, na.rm = TRUE)), linetype = "longdash", size = .5, alpha = 1 / 2) +
+    # geom_hline(aes(yintercept = boundaries[1, ][[1]]), linetype = "twodash", size = .5, alpha = 1/2) +
+    # geom_hline(aes(yintercept = boundaries[2, ][[1]]), linetype = "twodash", size = .5, alpha = 1/2) +
+    geom_hline(aes(yintercept = boundaries[3, ][[1]]), linetype = "dotted", size = .5, alpha = 1 / 2) +
+    geom_hline(aes(yintercept = boundaries[4, ][[1]]), linetype = "dotted", size = .5, alpha = 1 / 2) +
     geom_point(aes(index, outlier), size = 6, color = "coral") +
     geom_point(aes(index, x), size = 3, color = "cornflowerblue") +
     theme_light() +
     labs(
       x = "Index of observation",
-      y = "Value of observation") +
-    geom_text(aes(index, outlier, label = x))
-
-
+      y = "Value of observation"
+    ) +
+    geom_label(aes(index, outlier, label = x)) +
+    geom_label(data = labels, aes(x, y, label = label), fontface = "bold")
 }
 MAD_plot(x)
