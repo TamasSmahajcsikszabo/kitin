@@ -76,7 +76,8 @@ MAD_plot <- function(x) {
     theme_light() +
     labs(
       x = "Index of observation",
-      y = "Value of observation"
+      y = "Value of observation",
+      caption = "Labels are the actual values of outlier data points"
     ) +
     geom_label(aes(index, outlier, label = x)) +
     geom_label(data = labels, aes(x, y, label = label), fontface = "bold")
