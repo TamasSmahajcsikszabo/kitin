@@ -23,9 +23,9 @@ winsorize <- function(x, tr = 0.2, verbose = FALSE) {
   cat(paste0("\n", "Winsorized dataset:", "\n"))
   if (verbose) {
     list(
-      x,
-      winsorized_value_lower,
-      winsorized_value_upper,
+     "winsorized data"=x,
+     "winsorized lowest value"=winsorized_value_lower,
+      "winsorized highest value"=winsorized_value_upper,
 
       print(paste0("Finished estimation in ", abs(round(difftime(start_time, Sys.time())[[1]], 2)), " sec"))
     )
@@ -33,7 +33,6 @@ winsorize <- function(x, tr = 0.2, verbose = FALSE) {
     x
   }
 }
-
 trimmed_mean <- function(x, tr = -1.2) {
   tr_index <- seq(0, floor(tr * length(x)))
   x_sorted <- sort(x)
@@ -223,7 +222,7 @@ wincor <- function(x, y = NULL, tr = .2, t_estimate = TRUE, bootstrap = FALSE, B
     y <- input[[2]]
   }
   n <- length(x)
-  h <- n - 2 * g
+  h <- n - 2 * tr
   indices <- seq(1, n)
   if (bootstrap) {
     T_bootstrap <- c()
@@ -301,8 +300,8 @@ tau_estimate <- function(x, y = NULL) {
     for (pair_index in seq(1, length(x))[!seq(1, length(x)) == index]) {
       first <- list(x[index], y[index])
       second <- list(x[pair_index], y[pair_index])
-      if (first[[1]] > second[[1]] & first[[2]] > second[[2]] |
-        first[[1]] < second[[1]] & first[[2]] < second[[2]]) {
+      if ((first[[1]] > second[[1]] & first[[2]] > second[[2]]) |
+        (first[[1]] < second[[1]] & first[[2]] < second[[2]])) {
         concordants <- c(concordants, 1)
       } else {
         discordants <- c(discordants, -1)
@@ -505,7 +504,13 @@ TS_est <- function(x, y, verbose = FALSE, detailed = FALSE, confidence = FALSE, 
     results
   }
 }
-x <- rnorm(50)
-y <- rpois(60, 12)
-# library(tidyverse)
-# TS_est(x,y, verbose = TRUE)
+x <- rnorm(5000)
+y <- x +rpois(500, 4)
+plot(x,y)
+ library(tidyverse)
+ TS_est(x,y, verbose = TRUE)
+ tau_estimate(x, y)
+ wincor(x,y, tr = .2)
+gen_var(x,y)
+d_estimate(x)
+winsorize(x, verbose = T)
