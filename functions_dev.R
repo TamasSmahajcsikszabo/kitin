@@ -1,4 +1,4 @@
-# winsorizf function for general purposes
+# winsorize function for general purposes
 winsorize <- function(x, tr = 0.2, verbose = FALSE) {
   start_time <- Sys.time()
   if (!is.vector(x)) {

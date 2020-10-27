@@ -1,0 +1,431 @@
+!_TAG_FILE_FORMAT	2	/extended format; --format=1 will not append ;" to lines/
+!_TAG_FILE_SORTED	1	/0=unsorted, 1=sorted, 2=foldcase/
+!_TAG_PROGRAM_AUTHOR	Darren Hiebert	/dhiebert@users.sourceforge.net/
+!_TAG_PROGRAM_NAME	Exuberant Ctags	//
+!_TAG_PROGRAM_URL	http://ctags.sourceforge.net	/official site/
+!_TAG_PROGRAM_VERSION	5.8	//
+B	functions dev.R	/^W_bootstrap <- function(x1, x2, B = 599, tr = 0.2, seed = TRUE) {$/;"	v
+B	functions dev.R	/^bootstrap <- function(x, fun, B = 599, trim = TRUE, tr = 0.2, seed = TRUE, percentile = TRUE) {$/;"	v
+B	functions.R	/^W_bootstrap <- function(x1, x2, B = 599, tr = 0.2, seed=TRUE) {$/;"	v
+B	functions.R	/^bootstrap <- function(x, fun, B = 599, trim = TRUE, tr = 0.2, seed = TRUE, percentile = TRUE){$/;"	v
+B	functions_dev.R	/^W_bootstrap <- function(x1, x2, B = 599, tr = 0.2, seed = TRUE) {$/;"	v
+B	functions_dev.R	/^bootstrap <- function(x, fun, B = 599, trim = TRUE, tr = 0.2, seed = TRUE, percentile = TRUE) {$/;"	v
+Character	script.R	/^Character <- setRefClass("Character",$/;"	g
+M	functions dev.R	/^  M <- median(x, na.rm = TRUE)$/;"	v
+M	functions.R	/^  M <- median(x, na.rm = TRUE)$/;"	v
+M	functions_dev.R	/^  M <- median(x, na.rm = TRUE)$/;"	v
+MAD	mad.R	/^  MAD <- median(med_diff, na.rm = TRUE)$/;"	v
+MAD	mad.R	/^MAD <- function(x, verbose = TRUE) {$/;"	f
+MAD_plot	mad.R	/^MAD_plot <- function(x) {$/;"	f
+M_slope	functions_dev.R	/^    M_slope <- median(slopes, na.rm = TRUE)$/;"	v
+M_slope	robust_reg_dev.R	/^    M_slope <- median(slopes, na.rm = TRUE)$/;"	v
+M_slope_boot	functions_dev.R	/^      M_slope_boot <- median(slopes, na.rm = TRUE)$/;"	v
+M_slope_boot	robust_reg_dev.R	/^      M_slope_boot <- median(slopes, na.rm = TRUE)$/;"	v
+M_x	functions_dev.R	/^      M_x <- median(x_boot, na.rm = TRUE)$/;"	v
+M_x	functions_dev.R	/^    M_x <- median(x, na.rm = TRUE)$/;"	v
+M_x	robust_reg_dev.R	/^      M_x <- median(x_boot, na.rm = TRUE)$/;"	v
+M_x	robust_reg_dev.R	/^    M_x <- median(x, na.rm = TRUE)$/;"	v
+M_y	functions_dev.R	/^      M_y <- median(y_boot, na.rm = TRUE)$/;"	v
+M_y	functions_dev.R	/^    M_y <- median(y, na.rm = TRUE)$/;"	v
+M_y	robust_reg_dev.R	/^      M_y <- median(y_boot, na.rm = TRUE)$/;"	v
+M_y	robust_reg_dev.R	/^    M_y <- median(y, na.rm = TRUE)$/;"	v
+OSMest	functions dev.R	/^  OSMest <- (1.28 * MADN * (U - L) + B) \/ (n - L - U)$/;"	v
+OSMest	functions.R	/^  OSMest <- (1.28 * MADN * (U-L) + B)\/(n - L - U)$/;"	v
+OSMest	functions_dev.R	/^  OSMest <- (1.28 * MADN * (U - L) + B) \/ (n - L - U)$/;"	v
+T	robust/dependence_of_mean_and_var.R	/^    T = (m - mu) \/ (s\/sqrt(n))$/;"	v
+TS	robust_reg_dev.R	/^TS <- TS_est(x, y, verbose = FALSE, B = 10, confidence = FALSE)$/;"	g
+TS_est	functions_dev.R	/^TS_est <- function(x, y, verbose = FALSE, detailed = FALSE, confidence = FALSE, B = 599) {$/;"	f
+TS_est	robust_reg_dev.R	/^TS_est <- function(x, y, verbose = FALSE, detailed = FALSE, confidence = FALSE, B = 599) {$/;"	f
+T_w	functions dev.R	/^      T_w <- w_cor * sqrt((n - 2) \/ (1 - w_cor^2))$/;"	v
+T_w	functions.R	/^    T_w <- w_cor * sqrt((n - 2) \/ (1 - w_cor^2))$/;"	v
+T_w	functions_dev.R	/^      T_w <- w_cor * sqrt((n - 2) \/ (1 - w_cor^2))$/;"	v
+W_CI_95	functions dev.R	/^W_CI_95 <- function(x, g1, g2, tr = 0.2) {$/;"	f
+W_CI_95	functions.R	/^W_CI_95 <- function(x, g1, g2, tr = 0.2) {$/;"	f
+W_CI_95	functions_dev.R	/^W_CI_95 <- function(x, g1, g2, tr = 0.2) {$/;"	f
+W_bootstrap	functions dev.R	/^W_bootstrap <- function(x1, x2, B = 599, tr = 0.2, seed = TRUE) {$/;"	f
+W_bootstrap	functions.R	/^W_bootstrap <- function(x1, x2, B = 599, tr = 0.2, seed=TRUE) {$/;"	f
+W_bootstrap	functions_dev.R	/^W_bootstrap <- function(x1, x2, B = 599, tr = 0.2, seed = TRUE) {$/;"	f
+W_est	functions dev.R	/^    W_est <- ((boot_trim1 - boot_trim2) - (trim_1 - trim_2)) \/ (sqrt(d1 + d2))$/;"	v
+W_est	functions.R	/^    W_est <- ((boot_trim1 - boot_trim2) - (trim_1 - trim_2)) \/ (sqrt(d1 + d2))$/;"	v
+W_est	functions_dev.R	/^    W_est <- ((boot_trim1 - boot_trim2) - (trim_1 - trim_2)) \/ (sqrt(d1 + d2))$/;"	v
+W_estimated	robust/fitting straight line.R	/^W_estimated <- mean_added %>%$/;"	g
+X1	functions_dev.R	/^      X1 <- as.numeric(selected_pairs[, 1])$/;"	v
+X1	functions_dev.R	/^    X1 <- as.numeric(selected_pairs$x1)$/;"	v
+X1	robust_reg_dev.R	/^      X1 <- as.numeric(selected_pairs[, 1])$/;"	v
+X1	robust_reg_dev.R	/^    X1 <- as.numeric(selected_pairs$x1)$/;"	v
+X2	functions_dev.R	/^      X2 <- as.numeric(selected_pairs[, 2])$/;"	v
+X2	functions_dev.R	/^    X2 <- as.numeric(selected_pairs$x2)$/;"	v
+X2	robust_reg_dev.R	/^      X2 <- as.numeric(selected_pairs[, 2])$/;"	v
+X2	robust_reg_dev.R	/^    X2 <- as.numeric(selected_pairs$x2)$/;"	v
+Xt1	functions dev.R	/^  Xt1 <- trimmed_mean(g1, tr)$/;"	v
+Xt1	functions.R	/^  Xt1 <- trimmed_mean(g1,tr)$/;"	v
+Xt1	functions_dev.R	/^  Xt1 <- trimmed_mean(g1, tr)$/;"	v
+Xt2	functions dev.R	/^  Xt2 <- trimmed_mean(g2, tr)$/;"	v
+Xt2	functions.R	/^  Xt2 <- trimmed_mean(g2,tr)$/;"	v
+Xt2	functions_dev.R	/^  Xt2 <- trimmed_mean(g2, tr)$/;"	v
+Y1	functions_dev.R	/^      Y1 <- as.numeric(selected_pairs[, 3])$/;"	v
+Y1	functions_dev.R	/^    Y1 <- as.numeric(selected_pairs$y1)$/;"	v
+Y1	robust_reg_dev.R	/^      Y1 <- as.numeric(selected_pairs[, 3])$/;"	v
+Y1	robust_reg_dev.R	/^    Y1 <- as.numeric(selected_pairs$y1)$/;"	v
+Y2	functions_dev.R	/^      Y2 <- as.numeric(selected_pairs[, 4])$/;"	v
+Y2	functions_dev.R	/^    Y2 <- as.numeric(selected_pairs$y2)$/;"	v
+Y2	robust_reg_dev.R	/^      Y2 <- as.numeric(selected_pairs[, 4])$/;"	v
+Y2	robust_reg_dev.R	/^    Y2 <- as.numeric(selected_pairs$y2)$/;"	v
+a	new functions playground.R	/^a <- c(17,15,12,6,2,5,4,9,8,7,5,6,7)$/;"	g
+actual_top	script.R	/^      actual_top <- levels[level, ]$top$/;"	v
+alignment	script.R	/^    alignment = "character",$/;"	v
+b	new functions playground.R	/^b <- round(a+ rnorm(length(a))*4,0)$/;"	g
+boot_sample	functions dev.R	/^            boot_sample <- sample(x_selected, replace = TRUE)$/;"	v
+boot_sample	functions dev.R	/^          boot_sample <- sample(x, replace = TRUE)$/;"	v
+boot_sample	functions dev.R	/^      boot_sample <- sample(x, replace = TRUE)$/;"	v
+boot_sample	functions.R	/^            boot_sample <- sample(x_selected, replace = TRUE)$/;"	v
+boot_sample	functions.R	/^        boot_sample <- sample(x, replace = TRUE)$/;"	v
+boot_sample	functions.R	/^      boot_sample <- sample(x, replace = TRUE)$/;"	v
+boot_sample	functions_dev.R	/^            boot_sample <- sample(x_selected, replace = TRUE)$/;"	v
+boot_sample	functions_dev.R	/^          boot_sample <- sample(x, replace = TRUE)$/;"	v
+boot_sample	functions_dev.R	/^      boot_sample <- sample(x, replace = TRUE)$/;"	v
+boot_trim1	functions dev.R	/^    boot_trim1 <- trimmed_mean(bootstrap_sample1, tr)$/;"	v
+boot_trim1	functions.R	/^    boot_trim1 <- trimmed_mean(bootstrap_sample1, tr)$/;"	v
+boot_trim1	functions_dev.R	/^    boot_trim1 <- trimmed_mean(bootstrap_sample1, tr)$/;"	v
+boot_trim2	functions dev.R	/^    boot_trim2 <- trimmed_mean(bootstrap_sample2, tr)$/;"	v
+boot_trim2	functions.R	/^    boot_trim2 <- trimmed_mean(bootstrap_sample2,tr)$/;"	v
+boot_trim2	functions_dev.R	/^    boot_trim2 <- trimmed_mean(bootstrap_sample2, tr)$/;"	v
+bootstrap	functions dev.R	/^bootstrap <- function(x, fun, B = 599, trim = TRUE, tr = 0.2, seed = TRUE, percentile = TRUE) {$/;"	f
+bootstrap	functions.R	/^bootstrap <- function(x, fun, B = 599, trim = TRUE, tr = 0.2, seed = TRUE, percentile = TRUE){$/;"	f
+bootstrap	functions_dev.R	/^bootstrap <- function(x, fun, B = 599, trim = TRUE, tr = 0.2, seed = TRUE, percentile = TRUE) {$/;"	f
+bootstrap2	functions dev.R	/^bootstrap2 <- function(x, fun, mode = "estimate", B = 599, trimming = TRUE, tr = 0.2, seed = TRUE, percentile = TRUE) {$/;"	f
+bootstrap2	functions.R	/^bootstrap2 <- function(x, fun, mode = "estimate", B = 599, trimming = TRUE, tr = 0.2, seed = TRUE, percentile = TRUE) {$/;"	f
+bootstrap2	functions_dev.R	/^bootstrap2 <- function(x, fun, mode = "estimate", B = 599, trimming = TRUE, tr = 0.2, seed = TRUE, percentile = TRUE) {$/;"	f
+bootstrap_sample	functions dev.R	/^    bootstrap_sample <- sample(x, replace = TRUE)$/;"	v
+bootstrap_sample	functions.R	/^    bootstrap_sample <- sample(x, replace = TRUE)$/;"	v
+bootstrap_sample	functions_dev.R	/^    bootstrap_sample <- sample(x, replace = TRUE)$/;"	v
+bootstrap_sample1	functions dev.R	/^    bootstrap_sample1 <- sample(x1, replace = TRUE)$/;"	v
+bootstrap_sample1	functions.R	/^    bootstrap_sample1 <- sample(x1, replace = TRUE)$/;"	v
+bootstrap_sample1	functions_dev.R	/^    bootstrap_sample1 <- sample(x1, replace = TRUE)$/;"	v
+bootstrap_sample2	functions dev.R	/^    bootstrap_sample2 <- sample(x2, replace = TRUE)$/;"	v
+bootstrap_sample2	functions.R	/^    bootstrap_sample2 <- sample(x2, replace = TRUE)$/;"	v
+bootstrap_sample2	functions_dev.R	/^    bootstrap_sample2 <- sample(x2, replace = TRUE)$/;"	v
+bootstrap_t_trim	functions dev.R	/^bootstrap_t_trim <- function(x, B = 599) {$/;"	f
+bootstrap_t_trim	functions.R	/^bootstrap_t_trim <- function(x, B = 599) {$/;"	f
+bootstrap_t_trim	functions_dev.R	/^bootstrap_t_trim <- function(x, B = 599) {$/;"	f
+bound	functions dev.R	/^  bound <- sort(x[selected])$/;"	v
+bound	functions.R	/^  bound <- sort(x[selected])$/;"	v
+bound	functions_dev.R	/^  bound <- sort(x[selected])$/;"	v
+caption	mad.R	/^      caption = "Labels are the actual values of outlier data points"$/;"	v
+color	mad.R	/^    geom_point(aes(index, outlier), size = 6, color = "coral") +$/;"	v
+color	mad.R	/^    geom_point(aes(index, x), size = 4, color = "cornflowerblue") +$/;"	v
+covariance	functions dev.R	/^  covariance <- sqrt(var_x) * sqrt(var_y) * cor(x, y)$/;"	v
+covariance	functions_dev.R	/^  covariance <- sqrt(var_x) * sqrt(var_y) * cor(x, y)$/;"	v
+curve_data	robust/dependence_of_mean_and_var.R	/^curve_data <- data.frame(normal = rnorm(1000),$/;"	g
+curve_plot	robust/dependence_of_mean_and_var.R	/^curve_plot <- ggplot(curve_data) + $/;"	g
+d	mad.R	/^    d <- abs(x[i] - med)$/;"	v
+d	robust/dependence_of_mean_and_var.R	/^d <- c(1,1,2,6,5,9,1,2,5,2,7,6,3,5,8,9)$/;"	g
+d_estimate	functions dev.R	/^d_estimate <- function(x, tr = 0.2) {$/;"	f
+d_estimate	functions.R	/^d_estimate <- function(x, tr = 0.2) {$/;"	f
+d_estimate	functions_dev.R	/^d_estimate <- function(x, tr = 0.2) {$/;"	f
+d_i	robust/dependence_of_mean_and_var.R	/^    d_i  <- sample(d, 20)$/;"	v
+damage	script.R	/^    damage = function(x) {$/;"	f
+data	robust/fitting straight line.R	/^data <- as.data.frame(data)$/;"	g
+data	robust/fitting straight line.R	/^data <- tribble($/;"	g
+data	robust_reg_dev.R	/^data <- tribble($/;"	g
+data	testing.R	/^data <- data.frame(cbind(x,y,y_hat))$/;"	g
+den	robust/dependence_of_mean_and_var.R	/^den <- estimate_density(rnorm(100))$/;"	g
+den_plot	robust/dependence_of_mean_and_var.R	/^den_plot <- ggplot(den, aes(v, p)) +$/;"	g
+dep_plot	robust/dependence_of_mean_and_var.R	/^dep_plot <- ggplot(res, aes(means, variances)) +$/;"	g
+estimate	functions_dev.R	/^    cat(paste0("\\n", "Tau estimate = ", tau))$/;"	v
+estimate_T	robust/dependence_of_mean_and_var.R	/^estimate_T  <- function(m, mu, n, s) {$/;"	f
+estimate_density	robust/dependence_of_mean_and_var.R	/^estimate_density  <- function(d) {$/;"	f
+experience	script.R	/^    experience = "numeric",$/;"	v
+explanatory_power	functions dev.R	/^explanatory_power <- function(y_hat, y, fun = "var") {$/;"	f
+explanatory_power	functions_dev.R	/^explanatory_power <- function(y_hat, y, fun = "var") {$/;"	f
+first	functions dev.R	/^      first <- list(x[index], y[index])$/;"	v
+first	functions_dev.R	/^      first <- list(x[index], y[index])$/;"	v
+flip	coin_flipping.R	/^  flip <- sample(c("h", "t"), 1)$/;"	v
+fun	functions dev.R	/^explanatory_power <- function(y_hat, y, fun = "var") {$/;"	v
+fun	functions dev.R	/^smoother <- function(x, y, span = 0.1, fun = "mean") {$/;"	v
+fun	functions_dev.R	/^explanatory_power <- function(y_hat, y, fun = "var") {$/;"	v
+fun	functions_dev.R	/^smoother <- function(x, y, span = 0.1, fun = "mean") {$/;"	v
+gain_experience	script.R	/^    gain_experience = function(x) {$/;"	f
+gen_var	functions dev.R	/^  gen_var <- var_x * var_y - covariance^2$/;"	v
+gen_var	functions dev.R	/^gen_var <- function(x, y) {$/;"	f
+gen_var	functions_dev.R	/^  gen_var <- var_x * var_y - covariance^2$/;"	v
+gen_var	functions_dev.R	/^gen_var <- function(x, y) {$/;"	f
+gender	script.R	/^    gender = "character",$/;"	v
+h	functions dev.R	/^  h <- n - 2 * g$/;"	v
+h	functions.R	/^  h  <-  n - 2 * g$/;"	v
+h	functions_dev.R	/^  h <- n - 2 * tr$/;"	v
+heal	script.R	/^    heal = function(x) {$/;"	f
+health	script.R	/^    health = "numeric",$/;"	v
+i	functions_dev.R	/^      i <- seq(1, length(x))$/;"	v
+i	functions_dev.R	/^    i <- seq(1, length(x))$/;"	v
+i	robust_reg_dev.R	/^      i <- seq(1, length(x))$/;"	v
+i	robust_reg_dev.R	/^    i <- seq(1, length(x))$/;"	v
+i_boot	functions_dev.R	/^      i_boot <- sample(seq(1, length(x)), replace = TRUE)$/;"	v
+i_boot	robust_reg_dev.R	/^      i_boot <- sample(seq(1, length(x)), replace = TRUE)$/;"	v
+index	functions_dev.R	/^          index <- index + 1$/;"	v
+index	functions_dev.R	/^        index <- index + 1$/;"	v
+index	robust_reg_dev.R	/^          index <- index + 1$/;"	v
+index	robust_reg_dev.R	/^        index <- index + 1$/;"	v
+intercept	functions_dev.R	/^    intercept <- M_y - M_x * M_slope$/;"	v
+intercept	robust_reg_dev.R	/^    intercept <- M_y - M_x * M_slope$/;"	v
+intercept_boot	functions_dev.R	/^      intercept_boot <- M_y - M_x * M_slope_boot$/;"	v
+intercept_boot	robust_reg_dev.R	/^      intercept_boot <- M_y - M_x * M_slope_boot$/;"	v
+james	script.R	/^james <- Character$new()$/;"	g
+label	mad.R	/^    geom_label(data = labels, aes(x, y, label = label), fontface = "bold")$/;"	v
+labels	mad.R	/^  labels <- data.frame($/;"	v
+level	script.R	/^    level = "numeric",$/;"	v
+levels	script.R	/^levels <- tribble($/;"	g
+linetype	mad.R	/^    # geom_hline(aes(yintercept = boundaries[1, ][[1]]), linetype = "twodash", size = .5, alpha = 1\/2) +$/;"	v
+linetype	mad.R	/^    # geom_hline(aes(yintercept = boundaries[2, ][[1]]), linetype = "twodash", size = .5, alpha = 1\/2) +$/;"	v
+lower	functions dev.R	/^    lower <- mean - 1.96 * sd$/;"	v
+lower	functions dev.R	/^    lower <- seq(i - len, i)$/;"	v
+lower	functions dev.R	/^  lower <- (Xt1 - Xt2) - bound[1] * sqrt(d1 + d2)$/;"	v
+lower	functions.R	/^    lower <-  mean_bootstrap - sd_boostrap_196$/;"	v
+lower	functions.R	/^  lower <- (Xt1 - Xt2) - bound[1] * sqrt(d1 + d2)$/;"	v
+lower	functions_dev.R	/^    lower <- mean - 1.96 * sd$/;"	v
+lower	functions_dev.R	/^    lower <- seq(i - len, i)$/;"	v
+lower	functions_dev.R	/^  lower <- (Xt1 - Xt2) - bound[1] * sqrt(d1 + d2)$/;"	v
+m	robust/dependence_of_mean_and_var.R	/^                       m = mean(d_i),$/;"	v
+m	robust/dependence_of_mean_and_var.R	/^    m  <- mean(sampled)$/;"	v
+max_health	script.R	/^    max_health = "numeric"$/;"	v
+mean	functions dev.R	/^    mean <- mean(T_bootstrap, na.rm = TRUE)$/;"	v
+mean	functions_dev.R	/^    mean <- mean(T_bootstrap, na.rm = TRUE)$/;"	v
+mean_added	robust/fitting straight line.R	/^mean_added <- data %>%$/;"	g
+mean_bootstrap	functions dev.R	/^    mean_bootstrap <- mean(catcher)$/;"	v
+mean_bootstrap	functions.R	/^    mean_bootstrap = mean(catcher)$/;"	v
+mean_bootstrap	functions_dev.R	/^    mean_bootstrap <- mean(catcher)$/;"	v
+med	mad.R	/^  med <- median(x, na.rm = TRUE)$/;"	v
+message	functions_dev.R	/^        message <- c(message, ".")$/;"	v
+message	functions_dev.R	/^        message <- c(message, b)$/;"	v
+message	robust_reg_dev.R	/^        message <- c(message, ".")$/;"	v
+message	robust_reg_dev.R	/^        message <- c(message, b)$/;"	v
+mode	functions dev.R	/^bootstrap2 <- function(x, fun, mode = "estimate", B = 599, trimming = TRUE, tr = 0.2, seed = TRUE, percentile = TRUE) {$/;"	v
+mode	functions.R	/^bootstrap2 <- function(x, fun, mode = "estimate", B = 599, trimming = TRUE, tr = 0.2, seed = TRUE, percentile = TRUE) {$/;"	v
+mode	functions_dev.R	/^bootstrap2 <- function(x, fun, mode = "estimate", B = 599, trimming = TRUE, tr = 0.2, seed = TRUE, percentile = TRUE) {$/;"	v
+na.rm	functions dev.R	/^  MADN <- mad(x, na.rm = TRUE) \/ 0.6745$/;"	v
+na.rm	functions.R	/^  MADN <- mad(x, na.rm = TRUE)\/0.6745$/;"	v
+na.rm	functions_dev.R	/^  MADN <- mad(x, na.rm = TRUE) \/ 0.6745$/;"	v
+na.rm	mad.R	/^    geom_hline(aes(yintercept = median(x, na.rm = TRUE)), linetype = "longdash", size = .5, alpha = 1 \/ 2) +$/;"	v
+na.rm	mad.R	/^    median(x, na.rm = TRUE) + 2 * estimates[[2]]$/;"	v
+na.rm	mad.R	/^    median(x, na.rm = TRUE) + estimates[[2]],$/;"	v
+na.rm	mad.R	/^    median(x, na.rm = TRUE) - 2 * estimates[[2]],$/;"	v
+na.rm	mad.R	/^    median(x, na.rm = TRUE) - estimates[[2]],$/;"	v
+name	script.R	/^    name = "character",$/;"	v
+onestepm	functions dev.R	/^onestepm <- function(x) {$/;"	f
+onestepm	functions.R	/^onestepm <- function(x){$/;"	f
+onestepm	functions_dev.R	/^onestepm <- function(x) {$/;"	f
+outlier_vector	mad.R	/^  outlier_vector <- estimates[5]$/;"	v
+pair	functions_dev.R	/^          pair <- c(x1, x2, y1, y2, paste0(x1, ";", y1, "->", x2, ";", y2), paste0(x2, ";", y2, "->", x1, ";", y1))$/;"	v
+pair	functions_dev.R	/^        pair <- c(x1, x2, y1, y2, paste0(x1, ";", y1, "->", x2, ";", y2), paste0(x2, ";", y2, "->", x1, ";", y1))$/;"	v
+pair	robust_reg_dev.R	/^          pair <- c(x1, x2, y1, y2, paste0(x1, ";", y1, "->", x2, ";", y2), paste0(x2, ";", y2, "->", x1, ";", y1))$/;"	v
+pair	robust_reg_dev.R	/^        pair <- c(x1, x2, y1, y2, paste0(x1, ";", y1, "->", x2, ";", y2), paste0(x2, ";", y2, "->", x1, ";", y1))$/;"	v
+pairs	functions_dev.R	/^    pairs <- data.frame(matrix(ncol = 6, nrow = length(x) * maxpair))$/;"	v
+pairs	functions_dev.R	/^    pairs <- pairs %>% mutate(index = row_number())$/;"	v
+pairs	robust_reg_dev.R	/^    pairs <- data.frame(matrix(ncol = 6, nrow = length(x) * (length(y) - 1)))$/;"	v
+pairs	robust_reg_dev.R	/^    pairs <- pairs %>% mutate(index = row_number())$/;"	v
+plot_data	mad.R	/^  plot_data <- cbind(plot_data, outlier = outlier_vector)$/;"	v
+plot_data	mad.R	/^  plot_data <- data.frame(x)$/;"	v
+probabilities	robust/dependence_of_mean_and_var.R	/^    probabilities <- data.frame(matrix(ncol = 2, nrow = unique_values))$/;"	v
+race	script.R	/^    race = "character",$/;"	v
+res	robust/dependence_of_mean_and_var.R	/^res <- data.frame(matrix(ncol = 2))$/;"	g
+result	coin_flipping.R	/^  result <- c(result, flip)$/;"	v
+result4	new functions playground.R	/^result4 <- bootstrap2(list(a,b,c), "trimmed_mean")$/;"	g
+results	functions dev.R	/^      results <- list(w_cor, h)$/;"	v
+results	functions dev.R	/^      results <- list(w_cor, h, T_w, h - 2)$/;"	v
+results	functions dev.R	/^    results <- list("lower CI bound" = lower, "upper CI bound" = upper)$/;"	v
+results	functions dev.R	/^  results <- c(lower, upper)$/;"	v
+results	functions dev.R	/^  results <- list("Bootstrap sample" = catcher, "Additional results" = results)$/;"	v
+results	functions.R	/^    results <- list("lower CI bound" = lower, "upper CI bound" = upper)$/;"	v
+results	functions.R	/^    results <- list(w_cor, h)$/;"	v
+results	functions.R	/^    results <- list(w_cor, h, T_w, h - 2)$/;"	v
+results	functions.R	/^  results <- c(lower, upper)$/;"	v
+results	functions.R	/^  results <- list("Bootstrap sample" = catcher, "Additional results" = results)$/;"	v
+results	functions_dev.R	/^      results <- list(w_cor, h)$/;"	v
+results	functions_dev.R	/^      results <- list(w_cor, h, T_w, h - 2)$/;"	v
+results	functions_dev.R	/^    results <- list("lower CI bound" = lower, "upper CI bound" = upper)$/;"	v
+results	functions_dev.R	/^  results <- c(lower, upper)$/;"	v
+results	functions_dev.R	/^  results <- list("Bootstrap sample" = catcher, "Additional results" = results)$/;"	v
+s	mad.R	/^  s <- MAD \/ 0.6745$/;"	v
+s	robust/dependence_of_mean_and_var.R	/^    s <- sqrt(var(sampled))$/;"	v
+sampled_index	functions dev.R	/^      sampled_index <- sample(indices, n, replace = TRUE)$/;"	v
+sampled_index	functions_dev.R	/^      sampled_index <- sample(indices, n, replace = TRUE)$/;"	v
+sd	functions dev.R	/^    sd <- sqrt(var(T_bootstrap, na.rm = TRUE))$/;"	v
+sd	functions_dev.R	/^    sd <- sqrt(var(T_bootstrap, na.rm = TRUE))$/;"	v
+sd_intercept	functions_dev.R	/^    sd_intercept <- sqrt(sd(bootstrap_results[, 1], na.rm = TRUE))$/;"	v
+sd_intercept	robust_reg_dev.R	/^    sd_intercept <- sqrt(sd(bootstrap_results[, 1], na.rm = TRUE))$/;"	v
+sd_slope	functions_dev.R	/^    sd_slope <- sqrt(sd(bootstrap_results[, 2], na.rm = TRUE))$/;"	v
+sd_slope	robust_reg_dev.R	/^    sd_slope <- sqrt(sd(bootstrap_results[, 2], na.rm = TRUE))$/;"	v
+second	functions dev.R	/^      second <- list(x[pair_index], y[pair_index])$/;"	v
+second	functions_dev.R	/^      second <- list(x[pair_index], y[pair_index])$/;"	v
+selected	functions dev.R	/^  selected <- c(15, 584)$/;"	v
+selected	functions.R	/^  selected <- c(15, 584)$/;"	v
+selected	functions_dev.R	/^  selected <- c(15, 584)$/;"	v
+selected_pair	functions_dev.R	/^        selected_pair <- pairs[i, ]$/;"	v
+selected_pair	functions_dev.R	/^      selected_pair <- pairs[pairs$index == i, ][, -7]$/;"	v
+selected_pair	robust_reg_dev.R	/^        selected_pair <- pairs[i, ]$/;"	v
+selected_pair	robust_reg_dev.R	/^      selected_pair <- pairs[pairs$index == i, ][, -7]$/;"	v
+selected_pairs	functions_dev.R	/^          selected_pairs <- rbind(selected_pairs, selected_pair)$/;"	v
+selected_pairs	functions_dev.R	/^      selected_pairs <- selected_pairs[!is.na(selected_pairs$route), ]$/;"	v
+selected_pairs	functions_dev.R	/^      selected_pairs <- selected_pairs[!is.na(selected_pairs[, 1]), c(1:4)]$/;"	v
+selected_pairs	functions_dev.R	/^    selected_pairs <- data.frame(matrix(ncol = 6, nrow = maxpair \/ 2))$/;"	v
+selected_pairs	functions_dev.R	/^    selected_pairs <- selected_pairs %>%$/;"	v
+selected_pairs	functions_dev.R	/^    selected_pairs <- selected_pairs[, c(1:4)]$/;"	v
+selected_pairs	robust_reg_dev.R	/^          selected_pairs <- rbind(selected_pairs, selected_pair)$/;"	v
+selected_pairs	robust_reg_dev.R	/^      selected_pairs <- selected_pairs[!is.na(selected_pairs$route), ]$/;"	v
+selected_pairs	robust_reg_dev.R	/^      selected_pairs <- selected_pairs[!is.na(selected_pairs[, 1]), c(1:4)]$/;"	v
+selected_pairs	robust_reg_dev.R	/^    selected_pairs <- data.frame(matrix(ncol = 6, nrow = (length(x) * (length(y) - 1)) \/ 2))$/;"	v
+selected_pairs	robust_reg_dev.R	/^    selected_pairs <- selected_pairs %>%$/;"	v
+selected_pairs	robust_reg_dev.R	/^    selected_pairs <- selected_pairs[, c(1:4)]$/;"	v
+selected_y	functions dev.R	/^    selected_y <- y[selection_range]$/;"	v
+selected_y	functions_dev.R	/^    selected_y <- y[selection_range]$/;"	v
+size	mad.R	/^    geom_hline(aes(yintercept = boundaries[3, ][[1]]), linetype = "dotted", size = .5, alpha = 1 \/ 2) +$/;"	v
+size	mad.R	/^    geom_hline(aes(yintercept = boundaries[4, ][[1]]), linetype = "dotted", size = .5, alpha = 1 \/ 2) +$/;"	v
+slope	functions_dev.R	/^        slope <- slope_est(x1, x2, y1, y2)$/;"	v
+slope	functions_dev.R	/^      slope <- slope_est(x1, x2, y1, y2)$/;"	v
+slope	functions_dev.R	/^  slope <- (y2 - y1) \/ (x2 - x1)$/;"	v
+slope	robust/fitting straight line.R	/^slope <- W_final %>%$/;"	g
+slope	robust_reg_dev.R	/^        slope <- slope_est(x1, x2, y1, y2)$/;"	v
+slope	robust_reg_dev.R	/^      slope <- slope_est(x1, x2, y1, y2)$/;"	v
+slope	robust_reg_dev.R	/^  geom_abline(intercept = TS_est(x, y)[1], slope = TS_est(x, y)[2])$/;"	v
+slope	robust_reg_dev.R	/^  slope <- (y2 - y1) \/ (x2 - x1)$/;"	v
+slope_est	functions_dev.R	/^slope_est <- function(x1, x2, y1, y2) {$/;"	f
+slope_est	robust_reg_dev.R	/^slope_est <- function(x1, x2, y1, y2) {$/;"	f
+slope_lower	functions_dev.R	/^    slope_lower <- mean_slope - 1.96 * sd_slope$/;"	v
+slope_lower	robust_reg_dev.R	/^    slope_lower <- mean_slope - 1.96 * sd_slope$/;"	v
+slope_upper	functions_dev.R	/^    slope_upper <- mean_slope + 1.96 * sd_slope$/;"	v
+slope_upper	robust_reg_dev.R	/^    slope_upper <- mean_slope + 1.96 * sd_slope$/;"	v
+slopes	functions_dev.R	/^        slopes <- c(slopes, slope)$/;"	v
+slopes	functions_dev.R	/^      slopes <- c(slopes, slope)$/;"	v
+slopes	robust_reg_dev.R	/^        slopes <- c(slopes, slope)$/;"	v
+slopes	robust_reg_dev.R	/^      slopes <- c(slopes, slope)$/;"	v
+smoother	functions dev.R	/^smoother <- function(x, y, span = 0.1, fun = "mean") {$/;"	f
+smoother	functions_dev.R	/^smoother <- function(x, y, span = 0.1, fun = "mean") {$/;"	f
+span	testing.R	/^y_hat <- smoother(x,y, span = 0.04, fun = "trimmed_mean")$/;"	v
+t_b	functions dev.R	/^    t_b <- (trimmed_mean - trimmed_mean_total) \/ (winsorized_SD \/ (0.6 * sqrt(length(bootstrap_sample))))$/;"	v
+t_b	functions.R	/^    t_b <- (trimmed_mean - trimmed_mean_total) \/ (winsorized_SD\/(0.6 * sqrt(length(bootstrap_sample))))$/;"	v
+t_b	functions_dev.R	/^    t_b <- (trimmed_mean - trimmed_mean_total) \/ (winsorized_SD \/ (0.6 * sqrt(length(bootstrap_sample))))$/;"	v
+t_estimate	functions.R	/^wincor <- function(x, y=NULL,  tr = .2, t_estimate = TRUE, bootstrap = FALSE, B = 599) {$/;"	v
+t_i	robust/dependence_of_mean_and_var.R	/^    t_i  <- estimate_T($/;"	v
+t_s	robust/dependence_of_mean_and_var.R	/^    t_s  <- c(t_s, t_i)$/;"	v
+tau_estimate	functions dev.R	/^tau_estimate <- function(x, y = NULL) {$/;"	f
+tau_estimate	functions_dev.R	/^tau_estimate <- function(x, y = NULL) {$/;"	f
+test	testing_new.R	/^test <- bootstrap_t_trim(c(2,3,4,5,6))$/;"	g
+title	robust/dependence_of_mean_and_var.R	/^         title = "Dependence of mean and standard deviation on a lognormal curve",$/;"	v
+total	functions dev.R	/^      total <- total + 1$/;"	v
+total	functions_dev.R	/^      total <- total + 1$/;"	v
+tr	functions_dev.R	/^winsorize <- function(x, tr = 0.2, verbose = FALSE) {$/;"	v
+tr_index	functions dev.R	/^  tr_index <- seq(1, floor(tr * length(x)))$/;"	v
+tr_index	functions.R	/^  tr_index <- seq(1,floor(tr * length(x)))$/;"	v
+tr_index	functions_dev.R	/^  tr_index <- seq(0, floor(tr * length(x)))$/;"	v
+tr_index	functions_dev.R	/^  tr_index <- seq(1, floor(tr * length(x)))$/;"	v
+trim	functions dev.R	/^trim <- function(x, tr = 0.2) {$/;"	f
+trim	functions.R	/^trim <- function(x, tr = 0.2) {$/;"	f
+trim	functions_dev.R	/^trim <- function(x, tr = 0.2) {$/;"	f
+trim_1	functions dev.R	/^  trim_1 <- trimmed_mean(x1, tr)$/;"	v
+trim_1	functions.R	/^  trim_1 <-  trimmed_mean(x1, tr)$/;"	v
+trim_1	functions_dev.R	/^  trim_1 <- trimmed_mean(x1, tr)$/;"	v
+trim_2	functions dev.R	/^  trim_2 <- trimmed_mean(x2, tr)$/;"	v
+trim_2	functions.R	/^  trim_2 <- trimmed_mean(x2, tr)$/;"	v
+trim_2	functions_dev.R	/^  trim_2 <- trimmed_mean(x2, tr)$/;"	v
+trimmed	functions dev.R	/^  trimmed <- sort(trimmed, decreasing = TRUE)$/;"	v
+trimmed	functions dev.R	/^  trimmed <- trimmed[-tr_index]$/;"	v
+trimmed	functions dev.R	/^  trimmed <- x_sorted[-tr_index]$/;"	v
+trimmed	functions.R	/^  trimmed <- sort(trimmed, decreasing = TRUE)$/;"	v
+trimmed	functions.R	/^  trimmed <- trimmed[-tr_index]$/;"	v
+trimmed	functions.R	/^  trimmed <- x_sorted[-tr_index]$/;"	v
+trimmed	functions_dev.R	/^  trimmed <- sort(trimmed, decreasing = TRUE)$/;"	v
+trimmed	functions_dev.R	/^  trimmed <- trimmed[-tr_index]$/;"	v
+trimmed	functions_dev.R	/^  trimmed <- x_sorted[-tr_index]$/;"	v
+trimmed_mean	functions dev.R	/^    trimmed_mean <- trimmed_mean(bootstrap_sample, tr = 0.2)$/;"	v
+trimmed_mean	functions dev.R	/^  trimmed_mean <- mean(trimmed, na.rm = TRUE)$/;"	v
+trimmed_mean	functions dev.R	/^trimmed_mean <- function(x, tr = 0.2) {$/;"	f
+trimmed_mean	functions.R	/^    trimmed_mean <- trimmed_mean(bootstrap_sample, tr = 0.2)$/;"	v
+trimmed_mean	functions.R	/^  trimmed_mean <- mean(trimmed, na.rm = TRUE)$/;"	v
+trimmed_mean	functions.R	/^trimmed_mean <- function(x, tr = 0.2){$/;"	f
+trimmed_mean	functions_dev.R	/^    trimmed_mean <- trimmed_mean(bootstrap_sample, tr = 0.2)$/;"	v
+trimmed_mean	functions_dev.R	/^  trimmed_mean <- mean(trimmed, na.rm = TRUE)$/;"	v
+trimmed_mean	functions_dev.R	/^trimmed_mean <- function(x, tr = -1.2) {$/;"	f
+trimmed_mean_total	functions dev.R	/^  trimmed_mean_total <- trimmed_mean(x)$/;"	v
+trimmed_mean_total	functions.R	/^  trimmed_mean_total <- trimmed_mean(x)$/;"	v
+trimmed_mean_total	functions_dev.R	/^  trimmed_mean_total <- trimmed_mean(x)$/;"	v
+ts	robust_reg_dev.R	/^ts <- tsreg(data$x, data$y)$/;"	g
+unique_values	robust/dependence_of_mean_and_var.R	/^    unique_values <- unique(d)$/;"	v
+upper	functions dev.R	/^    upper <- mean + 1.96 * sd$/;"	v
+upper	functions dev.R	/^    upper <- seq(i, i + len)$/;"	v
+upper	functions dev.R	/^  upper <- (Xt1 - Xt2) - bound[2] * sqrt(d1 + d2)$/;"	v
+upper	functions.R	/^    upper <-  mean_bootstrap + sd_boostrap_196$/;"	v
+upper	functions.R	/^  upper <- (Xt1 - Xt2) - bound[2] * sqrt(d1 + d2)$/;"	v
+upper	functions_dev.R	/^    upper <- mean + 1.96 * sd$/;"	v
+upper	functions_dev.R	/^    upper <- seq(i, i + len)$/;"	v
+upper	functions_dev.R	/^  upper <- (Xt1 - Xt2) - bound[2] * sqrt(d1 + d2)$/;"	v
+verbose	functions_dev.R	/^TS_est <- function(x, y, verbose = FALSE, detailed = FALSE, confidence = FALSE, B = 599) {$/;"	v
+verbose	robust_reg_dev.R	/^TS <- TS_est(x, y, verbose = FALSE, B = 10, confidence = FALSE)$/;"	v
+verbose	robust_reg_dev.R	/^TS_est <- function(x, y, verbose = FALSE, detailed = FALSE, confidence = FALSE, B = 599) {$/;"	v
+verbose	robust_reg_dev.R	/^TS_est(data$x, data$y, verbose = TRUE, detailed = TRUE, confidence = TRUE)$/;"	v
+w_cor	functions dev.R	/^    w_cor <- cor(x_win, y_win)$/;"	v
+w_cor	functions.R	/^  w_cor <- cor(x_win, y_win)$/;"	v
+w_cor	functions_dev.R	/^    w_cor <- cor(x_win, y_win)$/;"	v
+wincor	functions dev.R	/^wincor <- function(x, y = NULL, tr = .2, t_estimate = TRUE, bootstrap = FALSE, B = 599, seed = FALSE) {$/;"	f
+wincor	functions.R	/^wincor <- function(x, y=NULL,  tr = .2, t_estimate = TRUE, bootstrap = FALSE, B = 599) {$/;"	f
+wincor	functions_dev.R	/^wincor <- function(x, y = NULL, tr = .2, t_estimate = TRUE, bootstrap = FALSE, B = 599, seed = FALSE) {$/;"	f
+winsorize	functions dev.R	/^winsorize <- function(x, tr = 0.2) {$/;"	f
+winsorize	functions.R	/^winsorize <- function(x, tr=0.2) {$/;"	f
+winsorize	functions_dev.R	/^winsorize <- function(x, tr = 0.2, verbose = FALSE) {$/;"	f
+winsorized_SD	functions dev.R	/^    winsorized_SD <- sd(winsorize(bootstrap_sample), na.rm = TRUE)$/;"	v
+winsorized_SD	functions.R	/^    winsorized_SD <- sd(winsorize(bootstrap_sample), na.rm = TRUE)$/;"	v
+winsorized_SD	functions_dev.R	/^    winsorized_SD <- sd(winsorize(bootstrap_sample), na.rm = TRUE)$/;"	v
+winsorized_value_lower	functions dev.R	/^  winsorized_value_lower <- x[threshold_index + 1]$/;"	v
+winsorized_value_lower	functions.R	/^  winsorized_value_lower <- x[threshold_index + 1]$/;"	v
+winsorized_value_lower	functions_dev.R	/^  winsorized_value_lower <- sort(x)[threshold_index + 1]$/;"	v
+winsorized_value_upper	functions dev.R	/^  winsorized_value_upper <- sort(x, decreasing = TRUE)[threshold_index + 1]$/;"	v
+winsorized_value_upper	functions.R	/^  winsorized_value_upper <- sort(x, decreasing =  TRUE)[threshold_index + 1]$/;"	v
+winsorized_value_upper	functions_dev.R	/^  winsorized_value_upper <- sort(x, decreasing = TRUE)[threshold_index + 1]$/;"	v
+x	functions dev.R	/^    x <- as.vector(x[, 1])$/;"	v
+x	functions dev.R	/^    x <- as_vector(x)$/;"	v
+x	functions dev.R	/^  x <- sort(x, decreasing = TRUE)$/;"	v
+x	functions.R	/^  x <- sort(x, decreasing = TRUE)$/;"	v
+x	functions_dev.R	/^    x <- as.vector(x[, 1])$/;"	v
+x	functions_dev.R	/^    x <- as_vector(x)$/;"	v
+x	functions_dev.R	/^x <- rnorm(5000)$/;"	g
+x	mad.R	/^    x = c(10, 10, 10),$/;"	v
+x	mad.R	/^x <- c(34, 49, 49, 44, 66, 48, 49, 39, 54, 57, 39, 65, 43, 43, 44, 42, 71, 40, 41, 38, 42, 77, 40, 38, 43, 42, 36, 55, 57, 57, 41, 66, 69, 38, 49, 51, 45, 141, 133, 76, 44, 40, 56, 50, 75, 44, 181, 45, 61, 15, 23, 42, 61, 146, 144, 89, 71, 83, 49, 43, 68, 57, 60, 56, 63, 136, 49, 57, 64, 43, 71, 38, 74, 84, 75, 64, 48)$/;"	g
+x	robust_reg_dev.R	/^x <- c(34, 49, 49, 44, 66, 48, 49, 39, 54, 57, 39, 65, 43, 43, 44, 42, 71, 40, 41, 38, 42, 77, 40, 38, 43, 42, 36, 55, 57, 57, 41, 66, 69, 38, 49, 51, 45, 141, 133, 76, 44, 40, 56, 50, 75, 44, 181, 45, 61, 15, 23, 42, 61, 146, 144, 89, 71, 83, 49, 43, 68, 57, 60, 56, 63, 136, 49, 57, 64, 43, 71, 38, 74, 84, 75, 64, 48)$/;"	g
+x	testing.R	/^x <- c(34,49,49,44,66,48,49,39,54,57,39,65,43,43,44,42,71,40,41,38,42,77,40,38,43,42,36,55,57,57,41,66,69,38,49,51,45,141,133,76,44,40,56,50,75,44,181,45,61,15,23,42,61,146,144,89,71,83,49,43,68,57,60,56,63,136,49,57,64,43,71,38,74,84,75,64,48)$/;"	g
+x	testing_new.R	/^x <- x1[1:300]$/;"	g
+x1	functions_dev.R	/^          x1 <- x_boot[i_chosen]$/;"	v
+x1	robust_reg_dev.R	/^          x1 <- x_boot[i_chosen]$/;"	v
+x1	testing_new.R	/^x1 <- rnorm(1000, mean = 2)$/;"	g
+x2	functions_dev.R	/^          x2 <- x_boot[i_chosen2]$/;"	v
+x2	robust_reg_dev.R	/^          x2 <- x_boot[i_chosen2]$/;"	v
+x2	testing_new.R	/^x2 <- rnorm(1000, mean = 0)$/;"	g
+x_boot	functions dev.R	/^      x_boot <- x[sampled_index]$/;"	v
+x_boot	functions_dev.R	/^      x_boot <- x[sampled_index]$/;"	v
+x_g_L	functions dev.R	/^    x_g_L <- sort(x)[g + 1]$/;"	v
+x_g_L	functions.R	/^  x_g_L <- sort(x)[g+1]$/;"	v
+x_g_L	functions_dev.R	/^    x_g_L <- sort(x)[g + 1]$/;"	v
+x_g_U	functions dev.R	/^    x_g_U <- sort(x, decreasing = TRUE)[g + 1]$/;"	v
+x_g_U	functions.R	/^  x_g_U <- sort(x, decreasing = TRUE)[g+1]$/;"	v
+x_g_U	functions_dev.R	/^    x_g_U <- sort(x, decreasing = TRUE)[g + 1]$/;"	v
+x_wins	functions dev.R	/^    x_wins <- sort(x_wins, decreasing = TRUE)$/;"	v
+x_wins	functions dev.R	/^  x_wins <- sort(x_wins)$/;"	v
+x_wins	functions.R	/^  x_wins <- sort(x_wins)$/;"	v
+y	functions dev.R	/^wincor <- function(x, y = NULL, tr = .2, t_estimate = TRUE, bootstrap = FALSE, B = 599, seed = FALSE) {$/;"	v
+y	functions_dev.R	/^wincor <- function(x, y = NULL, tr = .2, t_estimate = TRUE, bootstrap = FALSE, B = 599, seed = FALSE) {$/;"	v
+y	functions_dev.R	/^y <- x +rpois(500, 4)$/;"	g
+y	mad.R	/^      y = "Value of observation",$/;"	v
+y	mad.R	/^    y = c(boundaries[3, ][[1]], median(x, na.rm = TRUE), boundaries[4, ][[1]]),$/;"	v
+y	robust_reg_dev.R	/^y <- c(129, 107, 91, 110, 104, 101, 105, 125, 82, 92, 104, 134, 105, 95, 101, 104, 105, 122, 98, 104, 95, 93, 105, 132, 98, 112, 95, 102, 72, 103, 102, 102, 80, 125, 93, 105, 79, 125, 102, 91, 58, 104, 58, 129, 58, 90, 108, 95, 85, 84, 77, 85, 82, 82, 111, 58, 99, 77, 102, 82, 95, 95, 82, 72, 93, 114, 108, 95, 72, 95, 68, 119, 84, 75, 75, 122, 127)$/;"	g
+y	testing.R	/^y <- c(129,107,91,110,104,101,105,125,82,92,104,134,105,95,101,104,105,122,98,104,95,93,105,132,98,112,95,102,72,103,102,102,80,125,93,105,79,125,102,91,58,104,58,129,58,90,108,95,85,84,77,85,82,82,111,58,99,77,102,82,95,95,82,72,93,114,108,95,72,95,68,119,84,75,75,122,127)$/;"	g
+y	testing_new.R	/^y <- x2[1:300]$/;"	g
+y1	functions_dev.R	/^          y1 <- y_boot[i_chosen]$/;"	v
+y1	robust_reg_dev.R	/^          y1 <- y_boot[i_chosen]$/;"	v
+y2	functions_dev.R	/^          y2 <- y_boot[i_chosen2]$/;"	v
+y2	robust_reg_dev.R	/^          y2 <- y_boot[i_chosen2]$/;"	v
+y_boot	functions dev.R	/^      y_boot <- y[sampled_index]$/;"	v
+y_boot	functions_dev.R	/^      y_boot <- y[sampled_index]$/;"	v
+y_g_L	functions dev.R	/^    y_g_L <- sort(y)[g + 1]$/;"	v
+y_g_L	functions.R	/^  y_g_L <- sort(y)[g+1]$/;"	v
+y_g_L	functions_dev.R	/^    y_g_L <- sort(y)[g + 1]$/;"	v
+y_g_U	functions dev.R	/^    y_g_U <- sort(y, decreasing = TRUE)[g + 1]$/;"	v
+y_g_U	functions.R	/^  y_g_U <- sort(y, decreasing = TRUE)[g+1]$/;"	v
+y_g_U	functions_dev.R	/^    y_g_U <- sort(y, decreasing = TRUE)[g + 1]$/;"	v
