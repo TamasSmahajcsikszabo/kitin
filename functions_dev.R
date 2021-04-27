@@ -23,9 +23,9 @@ winsorize <- function(x, tr = 0.2, verbose = FALSE) {
   cat(paste0("\n", "Winsorized dataset:", "\n"))
   if (verbose) {
     list(
-     "winsorized data"=x,
-     "winsorized lowest value"=winsorized_value_lower,
-      "winsorized highest value"=winsorized_value_upper,
+      "winsorized data" = x,
+      "winsorized lowest value" = winsorized_value_lower,
+      "winsorized highest value" = winsorized_value_upper,
 
       print(paste0("Finished estimation in ", abs(round(difftime(start_time, Sys.time())[[1]], 2)), " sec"))
     )
@@ -285,7 +285,7 @@ wincor <- function(x, y = NULL, tr = .2, t_estimate = TRUE, bootstrap = FALSE, B
   }
 }
 
-tau_estimate <- function(x, y = NULL) {
+tau_estimate <- function(x, y = NULL, verbose = FALSE) {
   if (is.list(x)) {
     input <- x
     x <- input[[1]]
@@ -314,7 +314,11 @@ tau_estimate <- function(x, y = NULL) {
   if (is.nan(tau) & (length(x) == 1 | length(y) == 1)) {
     warning("Estimation not possible; input values are scalars")
   } else {
-    cat(paste0("\n", "Tau estimate = ", tau))
+    if (verbose) {
+      cat(paste0("\n", "Tau estimate = ", tau))
+    } else {
+      tau
+    }
   }
 }
 
@@ -504,13 +508,13 @@ TS_est <- function(x, y, verbose = FALSE, detailed = FALSE, confidence = FALSE, 
     results
   }
 }
-x <- rnorm(5000)
-y <- x +rpois(500, 4)
-plot(x,y)
- library(tidyverse)
- TS_est(x,y, verbose = TRUE)
- tau_estimate(x, y)
- wincor(x,y, tr = .2)
-gen_var(x,y)
-d_estimate(x)
-winsorize(x, verbose = T)
+# x <- rnorm(5000)
+# y <- x + rpois(500, 4)
+# plot(x, y)
+# library(tidyverse)
+# TS_est(x, y, verbose = TRUE)
+# tau_estimate(x, y)
+# wincor(x, y, tr = .2)
+# gen_var(x, y)
+# d_estimate(x)
+# winsorize(x, verbose = T)
